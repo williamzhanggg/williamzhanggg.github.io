@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,jvm," />
 
 
 
@@ -79,13 +79,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZhangWenL">
-<meta property="og:url" content="http://eros.pub/index.html">
+<meta name="description" content="​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：堆，栈，方法区，程序计数器，其中栈又可分为本地方法栈和虚拟机栈，下图可以直观的显示内存中各个区域的划分情况。  程序计数器​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。 ​  java通过在不同线程之间切换来执行多">
+<meta name="keywords" content="java,jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM内存结构">
+<meta property="og:url" content="http://eros.pub/2018/03/21/JVM内存结构/index.html">
 <meta property="og:site_name" content="ZhangWenL">
+<meta property="og:description" content="​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：堆，栈，方法区，程序计数器，其中栈又可分为本地方法栈和虚拟机栈，下图可以直观的显示内存中各个区域的划分情况。  程序计数器​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。 ​  java通过在不同线程之间切换来执行多">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180321/LKHgFgB3j8.jpg?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180321/FbHiA682Ga.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180321/mChiC1bK84.png?imageslim">
+<meta property="og:updated_time" content="2018-03-21T10:52:38.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhangWenL">
+<meta name="twitter:title" content="JVM内存结构">
+<meta name="twitter:description" content="​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：堆，栈，方法区，程序计数器，其中栈又可分为本地方法栈和虚拟机栈，下图可以直观的显示内存中各个区域的划分情况。  程序计数器​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。 ​  java通过在不同线程之间切换来执行多">
+<meta name="twitter:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180321/LKHgFgB3j8.jpg?imageslim">
 
 
 
@@ -115,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://eros.pub/"/>
+  <link rel="canonical" href="http://eros.pub/2018/03/21/JVM内存结构/"/>
 
 
 
 
 
-  <title>ZhangWenL</title>
+  <title>JVM内存结构 | ZhangWenL</title>
   
 
 
@@ -140,8 +149,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +242,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/21/JVM内存结构/" itemprop="url">JVM内存结构</a></h1>
+          <h1 class="post-title" itemprop="name headline">JVM内存结构</h1>
         
 
         <div class="post-meta">
@@ -322,6 +328,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
 
           
 
@@ -340,9 +351,7 @@
       
 
       
-        
-          
-            <p>​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：<strong>堆</strong>，<strong>栈</strong>，<strong>方法区</strong>，<strong>程序计数器</strong>，其中栈又可分为<strong>本地方法栈</strong>和<strong>虚拟机栈</strong>，下图可以直观的显示内存中各个区域的划分情况。</p>
+        <p>​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：<strong>堆</strong>，<strong>栈</strong>，<strong>方法区</strong>，<strong>程序计数器</strong>，其中栈又可分为<strong>本地方法栈</strong>和<strong>虚拟机栈</strong>，下图可以直观的显示内存中各个区域的划分情况。</p>
 <p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/LKHgFgB3j8.jpg?imageslim" alt="mark"></p>
 <h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。</p>
 <p>​  java通过在不同线程之间切换来执行多线程任务，同一个处理器同一时刻只能处理一个线程，为了保证切换之后能获取之前的执行状态，因此<strong>每个线程都拥有一个单独的程序计数器</strong>，多个线程之间的计数器互不影响。</p>
@@ -373,8 +382,6 @@
 <li>《深入理解Java虚拟机：JVM高级特性与最佳实践(第2版)》</li>
 </ol>
 
-          
-        
       
     </div>
     
@@ -389,14 +396,22 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -406,10 +421,37 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -417,6 +459,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDkwMi8xMTQzOQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -437,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -502,6 +562,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆（heap）"><span class="nav-number">2.</span> <span class="nav-text">堆（heap）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法区"><span class="nav-number">3.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时常量池"><span class="nav-number">4.</span> <span class="nav-text">运行时常量池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java虚拟机栈"><span class="nav-number">5.</span> <span class="nav-text">java虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地方法栈"><span class="nav-number">6.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -662,6 +738,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -690,6 +770,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

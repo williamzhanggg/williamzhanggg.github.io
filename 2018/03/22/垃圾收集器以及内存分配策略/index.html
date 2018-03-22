@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,jvm,垃圾回收," />
 
 
 
@@ -79,13 +79,25 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZhangWenL">
-<meta property="og:url" content="http://www.eros.pub/index.html">
+<meta name="description" content="判断对象的状态​    在垃圾回收器对对象进行回收之前首先需要判断对象是否存活，即是否会被引用。若对象不再被任何途经使用，则回收它，否则需要保留该对象。判断对象是否存活主要由以下两种算法。 引用计数法​    给对象添加一个引用计数器，对象被引用计数器加一，引用失效减一，若计数器为零则说明对象没有被引用。 ​    该算法实现简单，但主流虚拟机都没有采用该算法，因为该算法无法解决循环引用的问题。即">
+<meta name="keywords" content="java,jvm,垃圾回收">
+<meta property="og:type" content="article">
+<meta property="og:title" content="垃圾收集器以及内存分配策略">
+<meta property="og:url" content="http://www.eros.pub/2018/03/22/垃圾收集器以及内存分配策略/index.html">
 <meta property="og:site_name" content="ZhangWenL">
+<meta property="og:description" content="判断对象的状态​    在垃圾回收器对对象进行回收之前首先需要判断对象是否存活，即是否会被引用。若对象不再被任何途经使用，则回收它，否则需要保留该对象。判断对象是否存活主要由以下两种算法。 引用计数法​    给对象添加一个引用计数器，对象被引用计数器加一，引用失效减一，若计数器为零则说明对象没有被引用。 ​    该算法实现简单，但主流虚拟机都没有采用该算法，因为该算法无法解决循环引用的问题。即">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180322/ek7h89dGEl.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180322/ik0a9l3135.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180322/EIC7kFGkBH.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180322/2cHfdcF6Lj.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180322/ddf4E4Jga0.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180322/i080IHB3k8.png?imageslim">
+<meta property="og:updated_time" content="2018-03-22T13:40:03.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhangWenL">
+<meta name="twitter:title" content="垃圾收集器以及内存分配策略">
+<meta name="twitter:description" content="判断对象的状态​    在垃圾回收器对对象进行回收之前首先需要判断对象是否存活，即是否会被引用。若对象不再被任何途经使用，则回收它，否则需要保留该对象。判断对象是否存活主要由以下两种算法。 引用计数法​    给对象添加一个引用计数器，对象被引用计数器加一，引用失效减一，若计数器为零则说明对象没有被引用。 ​    该算法实现简单，但主流虚拟机都没有采用该算法，因为该算法无法解决循环引用的问题。即">
+<meta name="twitter:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180322/ek7h89dGEl.png?imageslim">
 
 
 
@@ -115,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://www.eros.pub/"/>
+  <link rel="canonical" href="http://www.eros.pub/2018/03/22/垃圾收集器以及内存分配策略/"/>
 
 
 
 
 
-  <title>ZhangWenL</title>
+  <title>垃圾收集器以及内存分配策略 | ZhangWenL</title>
   
 
 
@@ -140,8 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +245,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +277,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/22/垃圾收集器以及内存分配策略/" itemprop="url">垃圾收集器以及内存分配策略</a></h1>
+          <h1 class="post-title" itemprop="name headline">垃圾收集器以及内存分配策略</h1>
         
 
         <div class="post-meta">
@@ -322,6 +331,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
 
           
 
@@ -340,9 +354,7 @@
       
 
       
-        
-          
-            <h2 id="判断对象的状态"><a href="#判断对象的状态" class="headerlink" title="判断对象的状态"></a>判断对象的状态</h2><p>​    在垃圾回收器对对象进行回收之前首先需要判断对象是否存活，即是否会被引用。若对象不再被任何途经使用，则回收它，否则需要保留该对象。判断对象是否存活主要由以下两种算法。</p>
+        <h2 id="判断对象的状态"><a href="#判断对象的状态" class="headerlink" title="判断对象的状态"></a>判断对象的状态</h2><p>​    在垃圾回收器对对象进行回收之前首先需要判断对象是否存活，即是否会被引用。若对象不再被任何途经使用，则回收它，否则需要保留该对象。判断对象是否存活主要由以下两种算法。</p>
 <h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h3><p>​    给对象添加一个引用计数器，对象<strong>被引用计数器加一</strong>，<strong>引用失效减一</strong>，若<strong>计数器为零则说明对象没有被引用</strong>。</p>
 <p>​    该算法实现简单，但主流虚拟机都没有采用该算法，因为该算法<strong>无法解决循环引用</strong>的问题。即有A,B两个对象，A中某个字段指向B，B中某个字段指向A，两者计数器都不为零，但实际上两者都不会被使用，然而垃圾回收器却无法回收。</p>
 <h3 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h3><p>​    该算法是目前的主流实现算法，该算法的核心思想是通过一系列的对象作为起始点（称为“<strong>GC Roots</strong>”），由该节点中所引用的对象开始向下搜索，搜索所走过的路径称为“<strong>引用链</strong>”，若某对象无法与任何引用链相连，说明该对象不可用，虚拟机将判定其为可回收。</p>
@@ -383,8 +395,6 @@
 <li>《深入理解Java虚拟机：JVM高级特性与最佳实践(第2版)》</li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -399,185 +409,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/03/21/JVM内存结构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="卖黄瓜的小花菜">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZhangWenL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/21/JVM内存结构/" itemprop="url">JVM内存结构</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T18:42:22+08:00">
-                2018-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM高级特性/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM高级特性</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/java/" rel="tag"># java</a>
           
-
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
           
-            
+            <a href="/tags/垃圾回收/" rel="tag"># 垃圾回收</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：<strong>堆</strong>，<strong>栈</strong>，<strong>方法区</strong>，<strong>程序计数器</strong>，其中栈又可分为<strong>本地方法栈</strong>和<strong>虚拟机栈</strong>，下图可以直观的显示内存中各个区域的划分情况。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/LKHgFgB3j8.jpg?imageslim" alt="mark"></p>
-<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。</p>
-<p>​  java通过在不同线程之间切换来执行多线程任务，同一个处理器同一时刻只能处理一个线程，为了保证切换之后能获取之前的执行状态，因此<strong>每个线程都拥有一个单独的程序计数器</strong>，多个线程之间的计数器互不影响。</p>
-<p>​  若当前线程执行的是java方法，程序计数器的值为所执行指令的地址；若执行的native方法（非java代码），则值为undefined。</p>
-<p>​  此区域是唯一一个不存在OutOfMemoryError的区域。</p>
-<h4 id="堆（heap）"><a href="#堆（heap）" class="headerlink" title="堆（heap）"></a>堆（heap）</h4><p>​  堆是虚拟机管理的<strong>内存中最大的一块</strong>，在虚拟机启动时即被创建，<strong>所有线程共享该区域</strong>。堆上存放<strong>对象的实例和数组</strong>。主流虚拟机堆内存的大小都是可调节的（通过-Xms和-Xmx控制），若堆中没有内存可供实例分配，将抛出OutOfMemoryErroe错误。</p>
-<p>​  堆是垃圾管理器管理的主要区域，由于现在的GC基本采用分代收集算法，因此堆还可以分为：<strong>新生代</strong>和<strong>老年代</strong>，新生代又可细分为<strong>Eden</strong>，<strong>From Survivor</strong>，<strong>To Survivor</strong>。（见参考文章 1）</p>
-<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>​  方法区又叫静态区域，与堆一样，<strong>所有线程共享该区域</strong>。方法区存放<strong>被虚拟机加载的类的信息</strong>，<strong>常量</strong>，<strong>静态变量</strong>，<strong>编译后的代码</strong>，当方法区无法满足内存分配时，将抛出OutOfMemoryErroe错误。</p>
-<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>​  <strong>运行时常量池是方法区的一部分</strong>，受方法区内存限制，内存不足时将会抛出OutOfMemoryErroe错误。要理解运行时常量池需要理解以下三个概念：</p>
-<ul>
-<li><strong>常量池（Constant Pool）</strong>：常量池数据编译期被确定，是Class文件中的一部分。常量池中主要存放两大类常量：字面量（Literal）和符号引用（Symbolic Reference）。<ul>
-<li><strong><em>字面量</em></strong>：文本字符串、声明为final的常量值等。</li>
-<li><strong><em>符号引用</em></strong>：类和接口的完全限定名（Fully Qualified Name）、字段的名称和描述符（Descriptor）、方法的名称和描述符。</li>
-</ul>
-</li>
-<li><strong>字符串池/字符串常量池（String Pool/String Constant Pool）</strong>：是常量池中的一部分，存储编译期类中产生的字符串类型数据。</li>
-<li><strong>运行时常量池（Runtime Constant Pool）</strong>：方法区的一部分，所有线程共享。虚拟机加载Class后把常量池中的数据放入到运行时常量池。</li>
-</ul>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/FbHiA682Ga.png?imageslim" alt="mark"></p>
-<h4 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h4><p>​  和程序计数器一样，虚拟机栈也是<strong>线程私有</strong>的，生命周期跟线程相同。虚拟机栈表示Java方法执行的内存模型，每调用一个方法就会为每个方法生成一个<strong>栈帧（Stack Frame）</strong>，用来存储<strong>局部变量表、操作数栈、动态链接、方法出口等信息</strong>（见参考资料4）。每个方法被调用和完成的过程，都对应一个栈帧从虚拟机栈上入栈和出栈的过程。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/mChiC1bK84.png?imageslim" alt="mark"></p>
-<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>​  作用和虚拟机栈类似，虚拟机栈执行java方法，本地方法栈执行native方法（非java代码）。</p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
-<li><a href="https://www.cnblogs.com/E-star/p/5556188.html" target="_blank" rel="noopener">https://www.cnblogs.com/E-star/p/5556188.html</a></li>
-<li><a href="http://blog.csdn.net/bluetjs/article/details/52874852" target="_blank" rel="noopener">http://blog.csdn.net/bluetjs/article/details/52874852</a></li>
-<li><a href="http://blog.csdn.net/sunshine__me/article/details/49992909" target="_blank" rel="noopener">http://blog.csdn.net/sunshine__me/article/details/49992909</a></li>
-<li><a href="https://www.cnblogs.com/Codenewbie/p/6184898.html" target="_blank" rel="noopener">https://www.cnblogs.com/Codenewbie/p/6184898.html</a></li>
-<li>《深入理解Java虚拟机：JVM高级特性与最佳实践(第2版)》</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/21/JVM内存结构/" rel="next" title="JVM内存结构">
+                <i class="fa fa-chevron-left"></i> JVM内存结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -587,10 +452,37 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -598,6 +490,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDkwMi8xMTQzOQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -618,8 +519,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -683,6 +593,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#判断对象的状态"><span class="nav-number">1.</span> <span class="nav-text">判断对象的状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数法"><span class="nav-number">1.1.</span> <span class="nav-text">引用计数法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可达性分析算法"><span class="nav-number">1.2.</span> <span class="nav-text">可达性分析算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-清除算法"><span class="nav-number">2.1.</span> <span class="nav-text">标记-清除算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制算法"><span class="nav-number">2.2.</span> <span class="nav-text">复制算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-整理算法"><span class="nav-number">2.3.</span> <span class="nav-text">标记-整理算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分代收集算法"><span class="nav-number">2.4.</span> <span class="nav-text">分代收集算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分配策略"><span class="nav-number">3.</span> <span class="nav-text">内存分配策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象优先分配在eden区"><span class="nav-number">3.1.</span> <span class="nav-text">对象优先分配在eden区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大对象直接进入老年代"><span class="nav-number">3.2.</span> <span class="nav-text">大对象直接进入老年代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长期存活的对象进入老年代"><span class="nav-number">3.3.</span> <span class="nav-text">长期存活的对象进入老年代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态判定对象年龄"><span class="nav-number">3.4.</span> <span class="nav-text">动态判定对象年龄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间分配担保"><span class="nav-number">3.5.</span> <span class="nav-text">空间分配担保</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">4.</span> <span class="nav-text">垃圾收集器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -843,6 +769,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -871,6 +801,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

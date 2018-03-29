@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,jvm,双亲委派模型," />
 
 
 
@@ -79,13 +79,24 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZhangWenL">
-<meta property="og:url" content="http://www.eros.pub/index.html">
+<meta name="description" content="类加载过程类的加载过程包括加载、验证、准备、解析、初始化、使用和卸载七个阶段，其中验证、准备和解析合称为连接，加载过程如下图所示：加载过程除解析以外其他步骤顺序都是确定的，为了支持java的动态绑定，解析阶段有可能在初始化之后执行。 加载因为非数组类的加载可以使用自定义的类加载器进行加载，因此该阶段是整个加载过程中可控性最强的阶段。在加载阶段，类需要完成以下三个过程：    通过类的全限定名获取类">
+<meta name="keywords" content="java,jvm,双亲委派模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类加载机制">
+<meta property="og:url" content="http://www.eros.pub/2018/03/29/类加载机制/index.html">
 <meta property="og:site_name" content="ZhangWenL">
+<meta property="og:description" content="类加载过程类的加载过程包括加载、验证、准备、解析、初始化、使用和卸载七个阶段，其中验证、准备和解析合称为连接，加载过程如下图所示：加载过程除解析以外其他步骤顺序都是确定的，为了支持java的动态绑定，解析阶段有可能在初始化之后执行。 加载因为非数组类的加载可以使用自定义的类加载器进行加载，因此该阶段是整个加载过程中可控性最强的阶段。在加载阶段，类需要完成以下三个过程：    通过类的全限定名获取类">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/1522152140988poq55skr.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/15222415964512vb5lvnf.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180329/bfkKGKHIbf.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180329/13K9fG503i.png?imageslim">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180329/a8Di8cCJ2e.png?imageslim">
+<meta property="og:updated_time" content="2018-03-29T11:29:47.536Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZhangWenL">
+<meta name="twitter:title" content="类加载机制">
+<meta name="twitter:description" content="类加载过程类的加载过程包括加载、验证、准备、解析、初始化、使用和卸载七个阶段，其中验证、准备和解析合称为连接，加载过程如下图所示：加载过程除解析以外其他步骤顺序都是确定的，为了支持java的动态绑定，解析阶段有可能在初始化之后执行。 加载因为非数组类的加载可以使用自定义的类加载器进行加载，因此该阶段是整个加载过程中可控性最强的阶段。在加载阶段，类需要完成以下三个过程：    通过类的全限定名获取类">
+<meta name="twitter:image" content="http://p5nzydxvw.bkt.clouddn.com/1522152140988poq55skr.png?imageslim">
 
 
 
@@ -115,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://www.eros.pub/"/>
+  <link rel="canonical" href="http://www.eros.pub/2018/03/29/类加载机制/"/>
 
 
 
 
 
-  <title>ZhangWenL</title>
+  <title>类加载机制 | ZhangWenL</title>
   
 
 
@@ -140,8 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,9 +234,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -256,9 +266,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/29/类加载机制/" itemprop="url">类加载机制</a></h1>
+          <h1 class="post-title" itemprop="name headline">类加载机制</h1>
         
 
         <div class="post-meta">
@@ -312,6 +320,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
 
           
 
@@ -330,9 +343,7 @@
       
 
       
-        
-          
-            <h2 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h2><p>类的加载过程包括加载、验证、准备、解析、初始化、使用和卸载七个阶段，其中验证、准备和解析合称为连接，加载过程如下图所示：<br><img src="http://p5nzydxvw.bkt.clouddn.com/1522152140988poq55skr.png?imageslim" alt="paste image"><br>加载过程除解析以外其他步骤顺序都是确定的，为了支持java的动态绑定，解析阶段有可能在初始化之后执行。</p>
+        <h2 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h2><p>类的加载过程包括加载、验证、准备、解析、初始化、使用和卸载七个阶段，其中验证、准备和解析合称为连接，加载过程如下图所示：<br><img src="http://p5nzydxvw.bkt.clouddn.com/1522152140988poq55skr.png?imageslim" alt="paste image"><br>加载过程除解析以外其他步骤顺序都是确定的，为了支持java的动态绑定，解析阶段有可能在初始化之后执行。</p>
 <h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>因为非数组类的加载可以使用自定义的类加载器进行加载，因此该阶段是整个加载过程中可控性最强的阶段。在加载阶段，类需要完成以下三个过程：  </p>
 <ul>
 <li>通过类的全限定名获取类的二进制字节流（除了从class文件获取字节流，还可以通过网络、zip包、动态生成等多种方式获取）</li>
@@ -383,8 +394,6 @@
 <li>《深入理解Java虚拟机：JVM高级特性与最佳实践》</li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -399,536 +408,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/03/25/虚拟机性能监控与故障处理工具/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="卖黄瓜的小花菜">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZhangWenL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/25/虚拟机性能监控与故障处理工具/" itemprop="url">虚拟机性能监控与故障处理工具</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T12:11:30+08:00">
-                2018-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM高级特性/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM高级特性</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/java/" rel="tag"># java</a>
           
-
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
           
-            
+            <a href="/tags/双亲委派模型/" rel="tag"># 双亲委派模型</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="JDK命令行工具"><a href="#JDK命令行工具" class="headerlink" title="JDK命令行工具"></a>JDK命令行工具</h2><p>​    jdk监控和故障处理工具</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">名称</th>
-<th>主要作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">jps</td>
-<td>显示指定系统内所有的HotSpot虚拟机进程</td>
-</tr>
-<tr>
-<td style="text-align:left">jstat</td>
-<td>用于收集HotSpot虚拟机各方面的运行数据</td>
-</tr>
-<tr>
-<td style="text-align:left">jinfo</td>
-<td>显示虚拟机配置信息</td>
-</tr>
-<tr>
-<td style="text-align:left">jmap</td>
-<td>生成虚拟机内存转储快照（heapdump）文件</td>
-</tr>
-<tr>
-<td style="text-align:left">jhat</td>
-<td>用于分析heapdump文件，它会建立一个服务器，让用户可以在浏览器上查看分析结果</td>
-</tr>
-<tr>
-<td style="text-align:left">jstack</td>
-<td>显示虚拟机的线程快照</td>
-</tr>
-</tbody>
-</table>
-<h3 id="jps-虚拟机进程状况工具"><a href="#jps-虚拟机进程状况工具" class="headerlink" title="jps:虚拟机进程状况工具"></a>jps:虚拟机进程状况工具</h3><p>jps命令格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps [options][hostid]</span><br></pre></td></tr></table></figure>
-<p>其中hostid为RMI注册表中注册的主机名，jps其它常用选项如下：</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-q</td>
-<td>只输出LVMID，省略主类的名称</td>
-</tr>
-<tr>
-<td>-m</td>
-<td>输出虚拟机进程启动时传给主类main方法的参数</td>
-</tr>
-<tr>
-<td>-l</td>
-<td>输出主类的全名，若进程执行的是jar包，输出jar路径</td>
-</tr>
-<tr>
-<td>-v</td>
-<td>输出虚拟机进程启动时JVM参数</td>
-</tr>
-</tbody>
-</table>
-<h3 id="jstat-虚拟机统计信息监视工具"><a href="#jstat-虚拟机统计信息监视工具" class="headerlink" title="jstat:虚拟机统计信息监视工具"></a>jstat:虚拟机统计信息监视工具</h3><p>jstat命令格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat [option vmid [interval [s|ms] [count]]]</span><br></pre></td></tr></table></figure>
-<p>注：</p>
-<ul>
-<li>若为本地虚拟机进程，VMID和LVMID是一致的，若是远程虚拟机进程，VMID格式为：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[protocol:][//]lvmid[@hostname[:port]/servername]</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>interval</strong>和<strong>count</strong>表示<strong>查询间隔</strong>和<strong>次数</strong>，若不填只查询一次，如 jstat -gc 3243 250 20 表示每个250毫秒查询进程3243的垃圾收集状况，一共查询20次。</li>
-</ul>
-<p>option选项以及参数请参考下表：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">选项</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">-class</td>
-<td>监视类装载，卸载数量，总空间以及类装载所消耗的时间。</td>
-</tr>
-<tr>
-<td style="text-align:left">-gc</td>
-<td>监视java堆状况，包括堆中各个区域容量，已用空间，GC时间合计等。</td>
-</tr>
-<tr>
-<td style="text-align:left">-gccapacity</td>
-<td>监视内容和-gc基本相同，但主要关注各个区域使用的最大，最小空间。</td>
-</tr>
-<tr>
-<td style="text-align:left">-gcutil</td>
-<td>监视内容和-gc基本相同，但主要关注各个区域已使用空间占总空间的百分比。</td>
-</tr>
-<tr>
-<td style="text-align:left">-gccause</td>
-<td>与-gcutil一样，但会额外输出上一次gc产生的原因。</td>
-</tr>
-<tr>
-<td style="text-align:left">-gcnew</td>
-<td>监视新生代gc状况。</td>
-</tr>
-<tr>
-<td style="text-align:left">-gcnewcapacity</td>
-<td>监视内容与-gcnew基本相同，输出主要关注使用到的最大，最小空间。</td>
-</tr>
-<tr>
-<td style="text-align:left">-gcold</td>
-<td>监视老年代gc状况。</td>
-</tr>
-<tr>
-<td style="text-align:left">-gcoldcapacity</td>
-<td>监视内容与-gcold基本相似，输出主要关注使用到的最大，最小空间。</td>
-</tr>
-<tr>
-<td style="text-align:left">-gcpermcapacity</td>
-<td>输出永久代最大，最小空间。</td>
-</tr>
-<tr>
-<td style="text-align:left">-compiler</td>
-<td>输出JIT编译器编译过的方法，耗时等信息。</td>
-</tr>
-<tr>
-<td style="text-align:left">-printcompilation</td>
-<td>输出已经被JIT编译的方法</td>
-</tr>
-</tbody>
-</table>
-<h3 id="jinfo-Java配置信息工具"><a href="#jinfo-Java配置信息工具" class="headerlink" title="jinfo:Java配置信息工具"></a>jinfo:Java配置信息工具</h3><p>jinfo命令格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jinfo [option] pid</span><br></pre></td></tr></table></figure>
-<p>如查询CMSInitiatingOccupancyFraction参数值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jinfo -flag CMSInitiatingOccupancyFraction 1444</span><br></pre></td></tr></table></figure>
-<h3 id="jmap-Java内存映射工具"><a href="#jmap-Java内存映射工具" class="headerlink" title="jmap:Java内存映射工具"></a>jmap:Java内存映射工具</h3><p>jmap命令格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap [option] vmid</span><br></pre></td></tr></table></figure>
-<p>option参数如下表：</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-dump</td>
-<td>生成java堆转储快照，格式：-dump:[live,]format=b, file=<filename>,live参数说明是否只dump出存活对象。</filename></td>
-</tr>
-<tr>
-<td>-finalizerinfo</td>
-<td>显示在F-Queue中等待Finalizer线程执行finalize方法的对象。只在linux/solaris平台下有效。</td>
-</tr>
-<tr>
-<td>-heap</td>
-<td>显示java堆详细信息，如使用哪种回收器、参数配置、分代状况等。只在Linux/Solaris平台下有效。</td>
-</tr>
-<tr>
-<td>-histo</td>
-<td>显示堆中对象统计信息，包括类，实例数量、合计容量。</td>
-</tr>
-<tr>
-<td>-permstat</td>
-<td>以ClassLoader为统计口径显示永久代内存状态。只在linux/solaris平台下有效。</td>
-</tr>
-<tr>
-<td>-F</td>
-<td>当虚拟机进程堆-dump选项没有响应时，可使用这个选项强制生成dump快照。</td>
-</tr>
-</tbody>
-</table>
-<h3 id="jstack-Java堆栈跟踪工具"><a href="#jstack-Java堆栈跟踪工具" class="headerlink" title="jstack:Java堆栈跟踪工具"></a>jstack:Java堆栈跟踪工具</h3><p>jstack命令格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack [option] vmid</span><br></pre></td></tr></table></figure>
-<p>option选项如下表：</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-F</td>
-<td>当正常输出的请求不被响应时，强制输出线程堆栈。</td>
-</tr>
-<tr>
-<td>-l</td>
-<td>除堆栈外，显示关于锁的附加信息。</td>
-</tr>
-<tr>
-<td>-m</td>
-<td>如果调用本地方法的话，可现实C/C++的堆栈。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="JDK可视化工具"><a href="#JDK可视化工具" class="headerlink" title="JDK可视化工具"></a>JDK可视化工具</h2><p>​    除了命令行工具外，还可以使用bin目录下的jconsole或者使用VisualVM等可视化工具对虚拟机进行监视。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/03/22/垃圾收集器以及内存分配策略/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="卖黄瓜的小花菜">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZhangWenL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/22/垃圾收集器以及内存分配策略/" itemprop="url">垃圾收集器以及内存分配策略</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T21:39:05+08:00">
-                2018-03-22
-              </time>
+              <a href="/2018/03/25/虚拟机性能监控与故障处理工具/" rel="next" title="虚拟机性能监控与故障处理工具">
+                <i class="fa fa-chevron-left"></i> 虚拟机性能监控与故障处理工具
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM高级特性/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM高级特性</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="判断对象的状态"><a href="#判断对象的状态" class="headerlink" title="判断对象的状态"></a>判断对象的状态</h2><p>​    在垃圾回收器对对象进行回收之前首先需要判断对象是否存活，即是否会被引用。若对象不再被任何途经使用，则回收它，否则需要保留该对象。判断对象是否存活主要由以下两种算法。</p>
-<h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h3><p>​    给对象添加一个引用计数器，对象<strong>被引用计数器加一</strong>，<strong>引用失效减一</strong>，若<strong>计数器为零则说明对象没有被引用</strong>。</p>
-<p>​    该算法实现简单，但主流虚拟机都没有采用该算法，因为该算法<strong>无法解决循环引用</strong>的问题。即有A,B两个对象，A中某个字段指向B，B中某个字段指向A，两者计数器都不为零，但实际上两者都不会被使用，然而垃圾回收器却无法回收。</p>
-<h3 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h3><p>​    该算法是目前的主流实现算法，该算法的核心思想是通过一系列的对象作为起始点（称为“<strong>GC Roots</strong>”），由该节点中所引用的对象开始向下搜索，搜索所走过的路径称为“<strong>引用链</strong>”，若某对象无法与任何引用链相连，说明该对象不可用，虚拟机将判定其为可回收。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180322/ek7h89dGEl.png?imageslim" alt="mark"></p>
-<p>​    如图所示，obj6，obj7，obj8虽然相互有引用，但他们与GC Roots没有联系，因此他们将会被判定为可回收。</p>
-<p>​    在java中，可作为GC Roots的对象有以下几种：</p>
-<ul>
-<li>虚拟机栈（栈帧中的本地变量表）所引用的对象</li>
-<li>方法区中静态类型引用的变量</li>
-<li>方法区中常量引用的对象</li>
-<li>本地方法栈（native方法）引用的对象</li>
-</ul>
-<h2 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h2><h3 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h3><p>​    该算法是最基础的垃圾回收算法，后续算法都是在该基础之上进行改进而来。该算法分为两个阶段：</p>
-<ul>
-<li><strong>标记</strong>：标记出所有需要回收的对象</li>
-<li><strong>回收</strong>：将标记好的对象统一进行回收</li>
-</ul>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180322/ik0a9l3135.png?imageslim" alt="mark"></p>
-<p>​    该算法存在的问题：一是效率问题，<strong>标记和清除效率都不高</strong>。二是空间问题，会<strong>产生大量不连续的内存碎片</strong>，碎片过多会导致分配较大对象时无法找到足够的可用内存，进而提前触发垃圾回收动作。</p>
-<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>​    复制算法解决了标记清除算法的效率问题，复制算法<strong>将内存划分为大小相等的两块</strong>，每次只使用其中的一块。当这块内存用完后<strong>将所有存活的对象复制到另一块内存</strong>中，并清空当前这块内存。复制算法每次只对两块内存中的一块进行回收，也无需考虑内存碎片的问题。但该算法将<strong>内存缩小为原来的一半，比较浪费内存</strong>。</p>
-<p>​    当前主流虚拟机都以该算法来回收新生代。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180322/EIC7kFGkBH.png?imageslim" alt="mark"></p>
-<h3 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a>标记-整理算法</h3><p>​    标记的过程和标记-清除算法一致，但标记完不是直接清除，而是将<strong>存活的对象移到一边</strong>，直接将<strong>另外的内存清除</strong>。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180322/2cHfdcF6Lj.png?imageslim" alt="mark"></p>
-<h3 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h3><p>​    当前商业虚拟机的算法都采用的事分代收集算法，即根据对象生命周期的不同将内存分为几块。java堆内存分为新生代和老年代。新生代存活率低，大量对象死去，因此选用复制算法。老年代存活率高，复制算法需要较多内存，因此选用标记-清除算法或标记-整理算法。</p>
-<h2 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h2><h3 id="对象优先分配在eden区"><a href="#对象优先分配在eden区" class="headerlink" title="对象优先分配在eden区"></a>对象优先分配在eden区</h3><p>​    大多数情况下，对象在新生代的eden区中分配。若eden区没有足够的空间，虚拟机将发起一次Minor GC。</p>
-<h3 id="大对象直接进入老年代"><a href="#大对象直接进入老年代" class="headerlink" title="大对象直接进入老年代"></a>大对象直接进入老年代</h3><p>​    大对象是指需要大量连续内存空间的对象。经常出现大对象会导致内存中还有空间但提前触发垃圾收集以获取足够的连续空间来安置它。</p>
-<p>​    可以设置虚拟机的<strong>-XX:PretenureSizeThreshold</strong>值，当对象大小超过设置的值时直接进入老年代，避免在eden区和两个survivor区发生大量内存复制。</p>
-<h3 id="长期存活的对象进入老年代"><a href="#长期存活的对象进入老年代" class="headerlink" title="长期存活的对象进入老年代"></a>长期存活的对象进入老年代</h3><p>​    虚拟机为每一个对象设置了一个<strong>年龄计数器</strong>，当对象在eden区经历第一次Minor GC后仍然存活，则对象会被移到survivor区，并将年龄设为1。在<strong>survivor区每经历一次Minor GC年龄加1</strong>，当年龄达到一定阈值（默认15）将会被晋升到老年区。阈值可通过 <strong>-XX:MaxTenuringThreshold </strong>进行设置。</p>
-<h3 id="动态判定对象年龄"><a href="#动态判定对象年龄" class="headerlink" title="动态判定对象年龄"></a>动态判定对象年龄</h3><p>​    survivor中对象并非年龄一定要达到MaxTenuringThreshold才会进入老年代。若<strong>survivor中相同年龄的对象的大小总和超过survivor空间的一半</strong>，则虚拟机会将年龄<strong>大于等于该年龄的对象直接移到老年区</strong>。</p>
-<h3 id="空间分配担保"><a href="#空间分配担保" class="headerlink" title="空间分配担保"></a>空间分配担保</h3><p>​    在发生Minor GC时，虚拟机会检查老年代连续的空闲区域是否大于新生代所有对象的总和，若成立，则说明Minor GC是安全的，否则，虚拟机需要查看HandlePromotionFailure的值，看是否运行担保失败，若允许，则虚拟机继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，若大于，将尝试进行一次Minor GC；若小于或者HandlePromotionFailure设置不运行冒险，那么此时将改成一次Full GC，以上是JDK Update 24之前的策略，之后的策略改变了，只要老年代的连续空间大于新生代对象总大小或者历次晋升的平均大小就会进行Minor GC，否则将进行Full GC。<br>​    冒险是指经过一次Minor GC后有大量对象存活，而新生代的survivor区很小，放不下这些大量存活的对象，所以需要老年代进行分配担保，把survivor区无法容纳的对象直接进入老年代。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180322/ddf4E4Jga0.png?imageslim" alt="mark"></p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180322/i080IHB3k8.png?imageslim" alt="mark"></p>
-<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>参考这篇文章<a href="http://blog.csdn.net/tjiyu/article/details/53983650" target="_blank" rel="noopener">《Java虚拟机垃圾回收(三) 7种垃圾收集器   主要特点 应用场景 设置参数 基本运行原理》</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="http://www.cnblogs.com/parryyang/" target="_blank" rel="noopener">http://www.cnblogs.com/parryyang/</a></li>
-<li><a href="https://www.cnblogs.com/xiaoxi/p/6557473.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaoxi/p/6557473.html</a></li>
-<li>《深入理解Java虚拟机：JVM高级特性与最佳实践(第2版)》</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -938,181 +451,37 @@
   </article>
 
 
-    
+
+    <div class="post-spread">
       
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/03/21/JVM内存结构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="卖黄瓜的小花菜">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZhangWenL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/21/JVM内存结构/" itemprop="url">JVM内存结构</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T18:42:22+08:00">
-                2018-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM高级特性/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM高级特性</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：<strong>堆</strong>，<strong>栈</strong>，<strong>方法区</strong>，<strong>程序计数器</strong>，其中栈又可分为<strong>本地方法栈</strong>和<strong>虚拟机栈</strong>，下图可以直观的显示内存中各个区域的划分情况。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/LKHgFgB3j8.jpg?imageslim" alt="mark"></p>
-<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。</p>
-<p>​  java通过在不同线程之间切换来执行多线程任务，同一个处理器同一时刻只能处理一个线程，为了保证切换之后能获取之前的执行状态，因此<strong>每个线程都拥有一个单独的程序计数器</strong>，多个线程之间的计数器互不影响。</p>
-<p>​  若当前线程执行的是java方法，程序计数器的值为所执行指令的地址；若执行的native方法（非java代码），则值为undefined。</p>
-<p>​  此区域是唯一一个不存在OutOfMemoryError的区域。</p>
-<h4 id="堆（heap）"><a href="#堆（heap）" class="headerlink" title="堆（heap）"></a>堆（heap）</h4><p>​  堆是虚拟机管理的<strong>内存中最大的一块</strong>，在虚拟机启动时即被创建，<strong>所有线程共享该区域</strong>。堆上存放<strong>对象的实例和数组</strong>。主流虚拟机堆内存的大小都是可调节的（通过-Xms和-Xmx控制），若堆中没有内存可供实例分配，将抛出OutOfMemoryErroe错误。</p>
-<p>​  堆是垃圾管理器管理的主要区域，由于现在的GC基本采用分代收集算法，因此堆还可以分为：<strong>新生代</strong>和<strong>老年代</strong>，新生代又可细分为<strong>Eden</strong>，<strong>From Survivor</strong>，<strong>To Survivor</strong>。（见参考文章 1）</p>
-<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>​  方法区又叫静态区域，与堆一样，<strong>所有线程共享该区域</strong>。方法区存放<strong>被虚拟机加载的类的信息</strong>，<strong>常量</strong>，<strong>静态变量</strong>，<strong>编译后的代码</strong>，当方法区无法满足内存分配时，将抛出OutOfMemoryErroe错误。</p>
-<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>​  <strong>运行时常量池是方法区的一部分</strong>，受方法区内存限制，内存不足时将会抛出OutOfMemoryErroe错误。要理解运行时常量池需要理解以下三个概念：</p>
-<ul>
-<li><strong>常量池（Constant Pool）</strong>：常量池数据编译期被确定，是Class文件中的一部分。常量池中主要存放两大类常量：字面量（Literal）和符号引用（Symbolic Reference）。<ul>
-<li><strong><em>字面量</em></strong>：文本字符串、声明为final的常量值等。</li>
-<li><strong><em>符号引用</em></strong>：类和接口的完全限定名（Fully Qualified Name）、字段的名称和描述符（Descriptor）、方法的名称和描述符。</li>
-</ul>
-</li>
-<li><strong>字符串池/字符串常量池（String Pool/String Constant Pool）</strong>：是常量池中的一部分，存储编译期类中产生的字符串类型数据。</li>
-<li><strong>运行时常量池（Runtime Constant Pool）</strong>：方法区的一部分，所有线程共享。虚拟机加载Class后把常量池中的数据放入到运行时常量池。</li>
-</ul>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/FbHiA682Ga.png?imageslim" alt="mark"></p>
-<h4 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h4><p>​  和程序计数器一样，虚拟机栈也是<strong>线程私有</strong>的，生命周期跟线程相同。虚拟机栈表示Java方法执行的内存模型，每调用一个方法就会为每个方法生成一个<strong>栈帧（Stack Frame）</strong>，用来存储<strong>局部变量表、操作数栈、动态链接、方法出口等信息</strong>（见参考资料4）。每个方法被调用和完成的过程，都对应一个栈帧从虚拟机栈上入栈和出栈的过程。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/mChiC1bK84.png?imageslim" alt="mark"></p>
-<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>​  作用和虚拟机栈类似，虚拟机栈执行java方法，本地方法栈执行native方法（非java代码）。</p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
-<li><a href="https://www.cnblogs.com/E-star/p/5556188.html" target="_blank" rel="noopener">https://www.cnblogs.com/E-star/p/5556188.html</a></li>
-<li><a href="http://blog.csdn.net/bluetjs/article/details/52874852" target="_blank" rel="noopener">http://blog.csdn.net/bluetjs/article/details/52874852</a></li>
-<li><a href="http://blog.csdn.net/sunshine__me/article/details/49992909" target="_blank" rel="noopener">http://blog.csdn.net/sunshine__me/article/details/49992909</a></li>
-<li><a href="https://www.cnblogs.com/Codenewbie/p/6184898.html" target="_blank" rel="noopener">https://www.cnblogs.com/Codenewbie/p/6184898.html</a></li>
-<li>《深入理解Java虚拟机：JVM高级特性与最佳实践(第2版)》</li>
-</ol>
-
-          
-        
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -1120,6 +489,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDkwMi8xMTQzOQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1140,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1221,6 +608,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载过程"><span class="nav-number">1.</span> <span class="nav-text">类加载过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">1.1.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">1.2.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.3.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析"><span class="nav-number">1.4.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">1.5.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载器与双亲委派模型"><span class="nav-number">2.</span> <span class="nav-text">类加载器与双亲委派模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载器"><span class="nav-number">2.1.</span> <span class="nav-text">类加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双亲委派模型"><span class="nav-number">2.2.</span> <span class="nav-text">双亲委派模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">2.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#意义"><span class="nav-number">2.2.2.</span> <span class="nav-text">意义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义ClassLoader"><span class="nav-number">2.3.</span> <span class="nav-text">自定义ClassLoader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证双亲委派模型"><span class="nav-number">2.4.</span> <span class="nav-text">验证双亲委派模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1381,6 +784,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1409,6 +816,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

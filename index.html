@@ -239,6 +239,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/04/10/Java内存模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="卖黄瓜的小花菜">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangWenL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/10/Java内存模型/" itemprop="url">Java内存模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T18:57:00+08:00">
+                2018-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM高级特性/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM高级特性</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h2><p>Java内存模型的主要作用是定义了程序中各个变量的访问规则。<br><img src="http://p5nzydxvw.bkt.clouddn.com/152336546180074iwzj2s.png?imageslim" alt="paste image"><br>程序中所有变量都保存在主内存中，每个线程都有各自的工作线程，线程无法直接操作主内存中的变量。当线程需要操作某个变量时先将其从主内存中拷贝到自己的工作内存，操作完毕在同步到主内存，每个线程无法操作其它线程的工作内存。</p>
+<h2 id="内存间交互"><a href="#内存间交互" class="headerlink" title="内存间交互"></a>内存间交互</h2><p>主内存和工作内存之间的交互有如下八个步骤：  </p>
+<ul>
+<li><strong>lock（锁定）</strong>：将主内存中的某个变量标记为线程独占状态</li>
+<li><strong>unlock（解锁）</strong>：取消线程独占状态</li>
+<li><strong>read（读取）</strong>：将主内存中的变量传输到工作内存</li>
+<li><strong>load（加载）</strong>：将read得到的变量放到工作内存中的变量副本中</li>
+<li><strong>use（使用）</strong>：将工作内存中的变量传给执行引擎</li>
+<li><strong>assign（赋值）</strong>：将执行引擎返回的结果保存到工作内存中的变量副本</li>
+<li><strong>store（保存）</strong>：将工作内存中的变量传输到主内存中</li>
+<li><strong>write（写入）</strong>：将store过程的值保存到主内存的变量中  </li>
+</ul>
+<p>从主内存读取时，read和load一定是<strong>顺序执行</strong>的；保存到主内存时store和write也是顺序执行（<strong>顺序执行非连续执行</strong>，read和load中间可插入其他操作）</p>
+<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h2><p>volatile关键字是Java中最轻量级的同步机制，volatile关键字主要有以下两个作用：</p>
+<ul>
+<li>保证线程之间的可见性（<strong>无法保证原子性</strong>）</li>
+<li>禁止指令重排  </li>
+</ul>
+<p>之所以volatile能保证可见性是因为使用volatile修饰的变量每次修改后都会直接同步到主内存，每次使用前会直接从主内存之中读取，因此所有的修改对其他线程都是立即可见的。<br>由于volatile只保证可见性不保证原子性，因此使用时需满足以下两个条件：</p>
+<ul>
+<li>对变量的操作不依赖变量当前值</li>
+<li>改变了没有包含在具有其他变量的不变式中  </li>
+</ul>
+<p>关于指令重排序可参见美团点评技术团队的<a href="https://tech.meituan.com/java-memory-reordering.html" target="_blank" rel="noopener">《Java内存访问重排序的研究》</a>一文。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/04/08/当我们听民谣的时候我们都在听什么/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -612,7 +777,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T12:11:30+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T12:11:00+08:00">
                 2018-03-25
               </time>
             
@@ -1311,7 +1476,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1333,7 +1498,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

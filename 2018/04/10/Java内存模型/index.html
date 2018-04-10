@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,jvm," />
+  <meta name="keywords" content="java,jvm,volatile," />
 
 
 
@@ -79,22 +79,20 @@
 
 
 
-<meta name="description" content="​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：堆，栈，方法区，程序计数器，其中栈又可分为本地方法栈和虚拟机栈，下图可以直观的显示内存中各个区域的划分情况。  程序计数器​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。 ​  java通过在不同线程之间切换来执行多">
-<meta name="keywords" content="java,jvm">
+<meta name="description" content="Java内存模型Java内存模型的主要作用是定义了程序中各个变量的访问规则。程序中所有变量都保存在主内存中，每个线程都有各自的工作线程，线程无法直接操作主内存中的变量。当线程需要操作某个变量时先将其从主内存中拷贝到自己的工作内存，操作完毕在同步到主内存，每个线程无法操作其它线程的工作内存。 内存间交互主内存和工作内存之间的交互有如下八个步骤：    lock（锁定）：将主内存中的某个变量标记为线程">
+<meta name="keywords" content="java,jvm,volatile">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM内存结构">
-<meta property="og:url" content="http://www.eros.pub/2018/03/21/JVM内存结构/index.html">
+<meta property="og:title" content="Java内存模型">
+<meta property="og:url" content="http://www.eros.pub/2018/04/10/Java内存模型/index.html">
 <meta property="og:site_name" content="ZhangWenL">
-<meta property="og:description" content="​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：堆，栈，方法区，程序计数器，其中栈又可分为本地方法栈和虚拟机栈，下图可以直观的显示内存中各个区域的划分情况。  程序计数器​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。 ​  java通过在不同线程之间切换来执行多">
+<meta property="og:description" content="Java内存模型Java内存模型的主要作用是定义了程序中各个变量的访问规则。程序中所有变量都保存在主内存中，每个线程都有各自的工作线程，线程无法直接操作主内存中的变量。当线程需要操作某个变量时先将其从主内存中拷贝到自己的工作内存，操作完毕在同步到主内存，每个线程无法操作其它线程的工作内存。 内存间交互主内存和工作内存之间的交互有如下八个步骤：    lock（锁定）：将主内存中的某个变量标记为线程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180321/LKHgFgB3j8.jpg?imageslim">
-<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180321/FbHiA682Ga.png?imageslim">
-<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180321/mChiC1bK84.png?imageslim">
-<meta property="og:updated_time" content="2018-03-21T10:52:38.400Z">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/152336546180074iwzj2s.png?imageslim">
+<meta property="og:updated_time" content="2018-04-10T13:58:24.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM内存结构">
-<meta name="twitter:description" content="​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：堆，栈，方法区，程序计数器，其中栈又可分为本地方法栈和虚拟机栈，下图可以直观的显示内存中各个区域的划分情况。  程序计数器​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。 ​  java通过在不同线程之间切换来执行多">
-<meta name="twitter:image" content="http://p5nzydxvw.bkt.clouddn.com/blog/180321/LKHgFgB3j8.jpg?imageslim">
+<meta name="twitter:title" content="Java内存模型">
+<meta name="twitter:description" content="Java内存模型Java内存模型的主要作用是定义了程序中各个变量的访问规则。程序中所有变量都保存在主内存中，每个线程都有各自的工作线程，线程无法直接操作主内存中的变量。当线程需要操作某个变量时先将其从主内存中拷贝到自己的工作内存，操作完毕在同步到主内存，每个线程无法操作其它线程的工作内存。 内存间交互主内存和工作内存之间的交互有如下八个步骤：    lock（锁定）：将主内存中的某个变量标记为线程">
+<meta name="twitter:image" content="http://p5nzydxvw.bkt.clouddn.com/152336546180074iwzj2s.png?imageslim">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://www.eros.pub/2018/03/21/JVM内存结构/"/>
+  <link rel="canonical" href="http://www.eros.pub/2018/04/10/Java内存模型/"/>
 
 
 
 
 
-  <title>JVM内存结构 | ZhangWenL</title>
+  <title>Java内存模型 | ZhangWenL</title>
   
 
 
@@ -247,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/03/21/JVM内存结构/">
+    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/04/10/Java内存模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="卖黄瓜的小花菜">
@@ -264,7 +262,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM内存结构</h1>
+          <h1 class="post-title" itemprop="name headline">Java内存模型</h1>
         
 
         <div class="post-meta">
@@ -276,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T18:42:22+08:00">
-                2018-03-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T18:57:00+08:00">
+                2018-04-10
               </time>
             
 
@@ -341,36 +339,30 @@
       
 
       
-        <p>​  java虚拟机在运行过程中会将其所管理的内存划分为多个区域，根据各自用途可以大体划分为以下四个区域：<strong>堆</strong>，<strong>栈</strong>，<strong>方法区</strong>，<strong>程序计数器</strong>，其中栈又可分为<strong>本地方法栈</strong>和<strong>虚拟机栈</strong>，下图可以直观的显示内存中各个区域的划分情况。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/LKHgFgB3j8.jpg?imageslim" alt="mark"></p>
-<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>​  程序计数器在内存中只占了很小一部分，用来指向下一条指令的地址，字节码解释器在执行过程中根据程序计数器的值选取执行的指令。</p>
-<p>​  java通过在不同线程之间切换来执行多线程任务，同一个处理器同一时刻只能处理一个线程，为了保证切换之后能获取之前的执行状态，因此<strong>每个线程都拥有一个单独的程序计数器</strong>，多个线程之间的计数器互不影响。</p>
-<p>​  若当前线程执行的是java方法，程序计数器的值为所执行指令的地址；若执行的native方法（非java代码），则值为undefined。</p>
-<p>​  此区域是唯一一个不存在OutOfMemoryError的区域。</p>
-<h4 id="堆（heap）"><a href="#堆（heap）" class="headerlink" title="堆（heap）"></a>堆（heap）</h4><p>​  堆是虚拟机管理的<strong>内存中最大的一块</strong>，在虚拟机启动时即被创建，<strong>所有线程共享该区域</strong>。堆上存放<strong>对象的实例和数组</strong>。主流虚拟机堆内存的大小都是可调节的（通过-Xms和-Xmx控制），若堆中没有内存可供实例分配，将抛出OutOfMemoryErroe错误。</p>
-<p>​  堆是垃圾管理器管理的主要区域，由于现在的GC基本采用分代收集算法，因此堆还可以分为：<strong>新生代</strong>和<strong>老年代</strong>，新生代又可细分为<strong>Eden</strong>，<strong>From Survivor</strong>，<strong>To Survivor</strong>。（见参考文章 1）</p>
-<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>​  方法区又叫静态区域，与堆一样，<strong>所有线程共享该区域</strong>。方法区存放<strong>被虚拟机加载的类的信息</strong>，<strong>常量</strong>，<strong>静态变量</strong>，<strong>编译后的代码</strong>，当方法区无法满足内存分配时，将抛出OutOfMemoryErroe错误。</p>
-<h4 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h4><p>​  <strong>运行时常量池是方法区的一部分</strong>，受方法区内存限制，内存不足时将会抛出OutOfMemoryErroe错误。要理解运行时常量池需要理解以下三个概念：</p>
+        <h2 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h2><p>Java内存模型的主要作用是定义了程序中各个变量的访问规则。<br><img src="http://p5nzydxvw.bkt.clouddn.com/152336546180074iwzj2s.png?imageslim" alt="paste image"><br>程序中所有变量都保存在主内存中，每个线程都有各自的工作线程，线程无法直接操作主内存中的变量。当线程需要操作某个变量时先将其从主内存中拷贝到自己的工作内存，操作完毕在同步到主内存，每个线程无法操作其它线程的工作内存。</p>
+<h2 id="内存间交互"><a href="#内存间交互" class="headerlink" title="内存间交互"></a>内存间交互</h2><p>主内存和工作内存之间的交互有如下八个步骤：  </p>
 <ul>
-<li><strong>常量池（Constant Pool）</strong>：常量池数据编译期被确定，是Class文件中的一部分。常量池中主要存放两大类常量：字面量（Literal）和符号引用（Symbolic Reference）。<ul>
-<li><strong><em>字面量</em></strong>：文本字符串、声明为final的常量值等。</li>
-<li><strong><em>符号引用</em></strong>：类和接口的完全限定名（Fully Qualified Name）、字段的名称和描述符（Descriptor）、方法的名称和描述符。</li>
+<li><strong>lock（锁定）</strong>：将主内存中的某个变量标记为线程独占状态</li>
+<li><strong>unlock（解锁）</strong>：取消线程独占状态</li>
+<li><strong>read（读取）</strong>：将主内存中的变量传输到工作内存</li>
+<li><strong>load（加载）</strong>：将read得到的变量放到工作内存中的变量副本中</li>
+<li><strong>use（使用）</strong>：将工作内存中的变量传给执行引擎</li>
+<li><strong>assign（赋值）</strong>：将执行引擎返回的结果保存到工作内存中的变量副本</li>
+<li><strong>store（保存）</strong>：将工作内存中的变量传输到主内存中</li>
+<li><strong>write（写入）</strong>：将store过程的值保存到主内存的变量中  </li>
 </ul>
-</li>
-<li><strong>字符串池/字符串常量池（String Pool/String Constant Pool）</strong>：是常量池中的一部分，存储编译期类中产生的字符串类型数据。</li>
-<li><strong>运行时常量池（Runtime Constant Pool）</strong>：方法区的一部分，所有线程共享。虚拟机加载Class后把常量池中的数据放入到运行时常量池。</li>
+<p>从主内存读取时，read和load一定是<strong>顺序执行</strong>的；保存到主内存时store和write也是顺序执行（<strong>顺序执行非连续执行</strong>，read和load中间可插入其他操作）</p>
+<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h2><p>volatile关键字是Java中最轻量级的同步机制，volatile关键字主要有以下两个作用：</p>
+<ul>
+<li>保证线程之间的可见性（<strong>无法保证原子性</strong>）</li>
+<li>禁止指令重排  </li>
 </ul>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/FbHiA682Ga.png?imageslim" alt="mark"></p>
-<h4 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h4><p>​  和程序计数器一样，虚拟机栈也是<strong>线程私有</strong>的，生命周期跟线程相同。虚拟机栈表示Java方法执行的内存模型，每调用一个方法就会为每个方法生成一个<strong>栈帧（Stack Frame）</strong>，用来存储<strong>局部变量表、操作数栈、动态链接、方法出口等信息</strong>（见参考资料4）。每个方法被调用和完成的过程，都对应一个栈帧从虚拟机栈上入栈和出栈的过程。</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180321/mChiC1bK84.png?imageslim" alt="mark"></p>
-<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>​  作用和虚拟机栈类似，虚拟机栈执行java方法，本地方法栈执行native方法（非java代码）。</p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
-<li><a href="https://www.cnblogs.com/E-star/p/5556188.html" target="_blank" rel="noopener">https://www.cnblogs.com/E-star/p/5556188.html</a></li>
-<li><a href="http://blog.csdn.net/bluetjs/article/details/52874852" target="_blank" rel="noopener">http://blog.csdn.net/bluetjs/article/details/52874852</a></li>
-<li><a href="http://blog.csdn.net/sunshine__me/article/details/49992909" target="_blank" rel="noopener">http://blog.csdn.net/sunshine__me/article/details/49992909</a></li>
-<li><a href="https://www.cnblogs.com/Codenewbie/p/6184898.html" target="_blank" rel="noopener">https://www.cnblogs.com/Codenewbie/p/6184898.html</a></li>
-<li>《深入理解Java虚拟机：JVM高级特性与最佳实践(第2版)》</li>
-</ol>
+<p>之所以volatile能保证可见性是因为使用volatile修饰的变量每次修改后都会直接同步到主内存，每次使用前会直接从主内存之中读取，因此所有的修改对其他线程都是立即可见的。<br>由于volatile只保证可见性不保证原子性，因此使用时需满足以下两个条件：</p>
+<ul>
+<li>对变量的操作不依赖变量当前值</li>
+<li>改变了没有包含在具有其他变量的不变式中  </li>
+</ul>
+<p>关于指令重排序可参见美团点评技术团队的<a href="https://tech.meituan.com/java-memory-reordering.html" target="_blank" rel="noopener">《Java内存访问重排序的研究》</a>一文。</p>
 
       
     </div>
@@ -392,6 +384,8 @@
           
             <a href="/tags/jvm/" rel="tag"># jvm</a>
           
+            <a href="/tags/volatile/" rel="tag"># volatile</a>
+          
         </div>
       
 
@@ -403,15 +397,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/08/当我们听民谣的时候我们都在听什么/" rel="next" title="当我们听民谣的时候我们都在听什么">
+                <i class="fa fa-chevron-left"></i> 当我们听民谣的时候我们都在听什么
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/22/垃圾收集器以及内存分配策略/" rel="prev" title="垃圾收集器以及内存分配策略">
-                垃圾收集器以及内存分配策略 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -594,7 +588,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆（heap）"><span class="nav-number">2.</span> <span class="nav-text">堆（heap）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法区"><span class="nav-number">3.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时常量池"><span class="nav-number">4.</span> <span class="nav-text">运行时常量池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java虚拟机栈"><span class="nav-number">5.</span> <span class="nav-text">java虚拟机栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地方法栈"><span class="nav-number">6.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java内存模型"><span class="nav-number">1.</span> <span class="nav-text">Java内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存间交互"><span class="nav-number">2.</span> <span class="nav-text">内存间交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile关键字"><span class="nav-number">3.</span> <span class="nav-text">volatile关键字</span></a></li></ol></div>
             
 
           </div>

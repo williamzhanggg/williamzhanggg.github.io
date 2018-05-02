@@ -239,6 +239,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/05/02/连接远程服务器mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="卖黄瓜的小花菜">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangWenL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/02/连接远程服务器mysql/" itemprop="url">连接远程服务器mysql</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-02T20:20:00+08:00">
+                2018-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mysql允许远程访问"><a href="#mysql允许远程访问" class="headerlink" title="mysql允许远程访问"></a>mysql允许远程访问</h1><p>mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u name -p</span><br></pre></td></tr></table></figure></p>
+<p>登录数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br></pre></td></tr></table></figure>
+<p>切换到mysql数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select host,user from user;</span><br></pre></td></tr></table></figure>
+<p>可以看到root用户对应的host为localhost<br><img src="http://p5nzydxvw.bkt.clouddn.com/Screen%20Shot%202018-05-02%20at%208.31.03%20PM.png" alt="paste image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set host=&quot;%&quot; where user=&quot;root&quot;;</span><br></pre></td></tr></table></figure>
+<p>将用户对应的host改为%，表示可以从任何机器进行访问</p>
+<h1 id="修改防火墙"><a href="#修改防火墙" class="headerlink" title="修改防火墙"></a>修改防火墙</h1><p>要远程连接需要确保3306端口没有被防火墙拦截<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet 你的ip 3306</span><br></pre></td></tr></table></figure></p>
+<p>访问3306端口，如果访问失败，通过以下命令配置防火墙<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow 3306</span><br></pre></td></tr></table></figure></p>
+<p>允许访问3306端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw status</span><br></pre></td></tr></table></figure></p>
+<p>命令查看当前防火墙状态。</p>
+<h1 id="检查端口是否绑定在本地"><a href="#检查端口是否绑定在本地" class="headerlink" title="检查端口是否绑定在本地"></a>检查端口是否绑定在本地</h1><p>若修改完防火墙telnet仍然失败，可通过以下命令查看端口状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -apn|grep 3306</span><br></pre></td></tr></table></figure></p>
+<p>显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp6 0 0 127.0.0.1:3306 :::* LISTEN 13524/mysqld</span><br></pre></td></tr></table></figure></p>
+<p>说明3306端口被绑定在本地，修改/etc/mysql目录下的my.cnf文件，删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-address=127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>配置项，或将其改为0.0.0.0</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/04/10/Java内存模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1476,7 +1633,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1487,7 +1644,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1498,7 +1655,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

@@ -239,6 +239,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/05/10/创建线程池/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="卖黄瓜的小花菜">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangWenL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/10/创建线程池/" itemprop="url">创建线程池</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T19:23:49+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="使用Executors创建线程池"><a href="#使用Executors创建线程池" class="headerlink" title="使用Executors创建线程池"></a>使用Executors创建线程池</h2><p>Java 1.5引入了Executors API，通过该API可以直接创建线程池。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个可重用的线程池，任务会选择线程池中已创建的线程，如果没有可用线程，则会在线程池中创建新线程，如果线程60秒内没被使用，将被关闭并移除</span></span><br><span class="line">Executors.newCachedThreadPool();</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个固定大小的线程池，支持定时以及周期任务</span></span><br><span class="line">Executors.newScheduledThreadPool(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建单个工作线程的Executor,所有提交的任务会按照提交的顺序依次执行</span></span><br><span class="line">Executors.newSingleThreadExecutor();</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建固定长度的线程池，任何时候最多只会创建指定个数的线程来执行任务，如果提交任务时没有可用线程，该任务将会的队列中等待，知道线程可用</span></span><br><span class="line">Executors.newFixedThreadPool(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="手动创建线程池"><a href="#手动创建线程池" class="headerlink" title="手动创建线程池"></a>手动创建线程池</h2><p>虽然通过<strong>Executors</strong> API可以很方便的创建线程池，  但是<strong>阿里巴巴Java开发手册</strong>中确是不允许这么做的，提示我们<strong>Executors</strong>存在<strong>OOM</strong>的风险，应使用<strong>ThreadPoolExecutor</strong>手动创建线程池。</p>
+<p><img src="http://p5nzydxvw.bkt.clouddn.com/blog/180510/GfKAc4LE6D.png?imageslim" alt="mark"></p>
+<p><strong>ThreadPoolExecutor</strong>构造函数如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                          TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                          ThreadFactory threadFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                          RejectedExecutionHandler handler)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>corePoolSize</strong>：核心线程池数量，除非通过<strong>allowCoreThreadTimeOut()</strong>设置超时，否则无论线程是否闲置，线程池中都将保留该数量的线程</li>
+<li><strong>maximumPoolSize</strong>：线程池所允许线程的最大数量</li>
+<li><strong>keepAliveTime</strong>：存活时间，当线程池内的线程数量超过corePoolSize时，闲置线程等待的时间。超过该时间线程将被关闭</li>
+<li><strong>unit</strong>：keepAliveTime的单位</li>
+<li><strong>workQueue</strong>：存放未处理的任务队列</li>
+<li><strong>ThreadFactory</strong>：executor创建新线程时使用的ThreadFactory</li>
+<li><strong>RejectedExecutionHandler</strong>：当线程都在使用且队列内等待的任务数量达到队列上限时调用</li>
+</ul>
+<h3 id="线程池核心以及最大数量"><a href="#线程池核心以及最大数量" class="headerlink" title="线程池核心以及最大数量"></a>线程池核心以及最大数量</h3><p><strong>ThreadPoolExecutor</strong>会根据<strong>corePoolSize</strong>和<strong>maximumPoolSize</strong>自动调整线程池大小，当提交新任务时，若当前线程数小于<strong>corePoolSize</strong>，无论是否有闲置线程都将创建新的线程。如果线程数介于<strong>corePoolSize</strong>和<strong>maximumPoolSize</strong>之间，只有不存在闲置线程时才会创建新线程。</p>
+<h3 id="预先启动核心线程"><a href="#预先启动核心线程" class="headerlink" title="预先启动核心线程"></a>预先启动核心线程</h3><p>默认情况下，<strong>ThreadPoolExecutor</strong>只会创建线程，只有通过execute()提交任务时才会启动线程。如果参数传入的为非空队列，可通过<code>prestartCoreThread()</code>直接启动线程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">BlockingQueue&lt;Runnable&gt; queue = <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;();</span><br><span class="line">        </span><br><span class="line">Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">queue.add(runnable);</span><br><span class="line"></span><br><span class="line">ThreadPoolExecutor executor = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">1</span>,<span class="number">5</span>,<span class="number">60</span>,TimeUnit.SECONDS,queue);</span><br><span class="line"></span><br><span class="line">executor.prestartCoreThread();<span class="comment">//注释掉该行上面的runnable不会执行</span></span><br><span class="line">executor.shutdown();</span><br></pre></td></tr></table></figure>
+<h3 id="创建新线程"><a href="#创建新线程" class="headerlink" title="创建新线程"></a>创建新线程</h3><p>线程池通过参数中传入的<strong>ThreadFactory</strong>创建新线程，默认为<code>Executors.defaultThreadFactory()</code>，使用自定义<strong>ThreadFactory</strong>可以为线程指定有意义的名称，方便出错时定位，还可以设置线程优先级，设置为守护线程等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">BlockingQueue&lt;Runnable&gt; queue = <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;();</span><br><span class="line"></span><br><span class="line">AtomicInteger i = <span class="keyword">new</span> AtomicInteger(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义ThreadFactory</span></span><br><span class="line">ThreadFactory threadFactory = <span class="keyword">new</span> ThreadFactory() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Thread <span class="title">newThread</span><span class="params">(Runnable r)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(Thread.currentThread().getThreadGroup(),r,<span class="string">"my_thread_"</span> + i.getAndIncrement(),<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> thread;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ThreadPoolExecutor executor = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>,</span><br><span class="line">                                                     TimeUnit.SECONDS,queue,threadFactory);</span><br><span class="line"></span><br><span class="line">executor.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">executor.shutdown();</span><br></pre></td></tr></table></figure>
+<h3 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h3><p><strong>BlockingQueue</strong>用来存放提交的任务，根据任务数量的不同分为以下三种使用情况：</p>
+<ul>
+<li>如果运行的线程数少于<code>corePoolSize</code>，executor会优先创建新的线程，而非加入队列</li>
+<li>若运行的线程数大于<code>corePoolSize</code>，executor会优先将任务加入队列</li>
+<li>如果队列已满，则会创建新的线程，若线程数量大于<code>maximumPoolSize</code>，该任务会被<strong>拒绝</strong></li>
+</ul>
+<h3 id="拒绝策略"><a href="#拒绝策略" class="headerlink" title="拒绝策略"></a>拒绝策略</h3><p>如果Executor被关闭或者队列已满且线程数量已达<code>maximumPoolSize</code>，则通过<code>execute()</code>提交的任务会被拒绝。发生上述情况会调用<code>RejectedExecutionHandler.rejectedExecution(Runnable, ThreadPoolExecutor)</code>。预定义的处理策略有如下四种：</p>
+<ul>
+<li><strong>ThreadPoolExecutor.AbortPolicy</strong>：默认值，抛出一个运行时异常<code>RejectedExecutionException</code></li>
+<li><strong>ThreadPoolExecutor.CallerRunsPolicy</strong>： 直接在调用 <code>execute</code> 方法的线程执行该任务</li>
+<li><strong>ThreadPoolExecutor.DiscardPolicy</strong>：任务无法执行直接丢弃</li>
+<li><strong>ThreadPoolExecutor.DiscardOldestPolicy</strong>：若 executor 没有关闭，队列前面的任务会被丢弃，然后重试（如果失败重复上步）</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/05/02/连接远程服务器mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1633,7 +1807,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1644,7 +1818,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1655,7 +1829,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

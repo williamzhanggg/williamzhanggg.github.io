@@ -239,6 +239,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/06/11/解决防盗链导致图片无法引用的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="卖黄瓜的小花菜">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangWenL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/11/解决防盗链导致图片无法引用的问题/" itemprop="url">解决防盗链导致图片无法引用的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T22:51:00+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其它/" itemprop="url" rel="index">
+                    <span itemprop="name">其它</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>很多网站都有反盗链机制，当我们直接把对方的图片地址贴到我们的页面上是无法显示的，比如微信公众号的图片：</p>
+<p><img src="http://p5nzydxvw.bkt.clouddn.com/1094179-20180522102506928-907006799.png" alt="image"></p>
+<p>这是由于浏览器在发起请求的会自动在请求头里添加referer，显示该请求来自哪个页面。对方服务器会对referer进行判断，来自其他域名的请求会被屏蔽。而直接通过浏览器打开的请求则不会添加referer，为了用户正常使用，一般不会屏蔽空referer的请求，因此我们只需要在请求中想办法去掉referer即可正常显示图片。以下两个是我亲测可行的方案。</p>
+<h2 id="HTML页面添加meta标签"><a href="#HTML页面添加meta标签" class="headerlink" title="HTML页面添加meta标签"></a>HTML页面添加meta标签</h2><p>在需要去除referer的页面<head>中添加<code>&lt;meta name=&quot;referrer&quot; content=&quot;never&quot;&gt;</code>，注意name为<strong>referrer</strong>不是<strong>referer</strong>，将<strong>content</strong>设为<strong>never</strong>，则浏览器在发起请求前会删除http请求head中的referer。关于referer更多设置的值可以参考该文章：<a href="https://linux.cn/article-5395-1.html" target="_blank" rel="noopener">《使用 Referer Meta 标签控制 referer》</a></head></p>
+<h2 id="服务器转发请求"><a href="#服务器转发请求" class="headerlink" title="服务器转发请求"></a>服务器转发请求</h2><p>上面方法比较简单直接，但并不是所有时候都适用，比如在邮件中则无法显示，因为邮件服务商一般都会删除邮件中的<head>标签。  </head></p>
+<p>该方法是将原图片的url作为参数传到服务器，由服务器设置referer为null，并302重定向到原来的url。  </p>
+<p>服务器端的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;noreferer&quot;)</span><br><span class="line">public void noreferer(HttpServletResponse response, String url)&#123;</span><br><span class="line">    response.addHeader(&quot;location&quot;,url);</span><br><span class="line">    response.addHeader(&quot;referer&quot;,null);</span><br><span class="line">    response.setStatus(302);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改html页面的img标签，如：<code>&lt;img src=&quot;http://原图片url&quot;&gt;</code> 改为：<code>&lt;img src=&quot;http:你服务器地址/noreferer?url=http://原图片url&quot;</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/05/10/创建线程池/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -270,7 +420,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T19:23:49+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T19:23:00+08:00">
                 2018-05-10
               </time>
             
@@ -1807,7 +1957,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="服务器,mysql," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,20 +79,19 @@
 
 
 
-<meta name="description" content="mysql允许远程访问mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问1mysql -u name -p 登录数据库 1use mysql; 切换到mysql数据库 1select host,user from user; 可以看到root用户对应的host为localhost 1update user set host=&amp;quot;%&amp;quot; where user=&amp;">
-<meta name="keywords" content="服务器,mysql">
+<meta name="description" content="很多网站都有反盗链机制，当我们直接把对方的图片地址贴到我们的页面上是无法显示的，比如微信公众号的图片：  这是由于浏览器在发起请求的会自动在请求头里添加referer，显示该请求来自哪个页面。对方服务器会对referer进行判断，来自其他域名的请求会被屏蔽。而直接通过浏览器打开的请求则不会添加referer，为了用户正常使用，一般不会屏蔽空referer的请求，因此我们只需要在请求中想办法去掉re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="连接远程服务器mysql">
-<meta property="og:url" content="http://www.eros.pub/2018/05/02/连接远程服务器mysql/index.html">
+<meta property="og:title" content="解决防盗链导致图片无法引用的问题">
+<meta property="og:url" content="http://www.eros.pub/2018/06/11/解决防盗链导致图片无法引用的问题/index.html">
 <meta property="og:site_name" content="ZhangWenL">
-<meta property="og:description" content="mysql允许远程访问mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问1mysql -u name -p 登录数据库 1use mysql; 切换到mysql数据库 1select host,user from user; 可以看到root用户对应的host为localhost 1update user set host=&amp;quot;%&amp;quot; where user=&amp;">
+<meta property="og:description" content="很多网站都有反盗链机制，当我们直接把对方的图片地址贴到我们的页面上是无法显示的，比如微信公众号的图片：  这是由于浏览器在发起请求的会自动在请求头里添加referer，显示该请求来自哪个页面。对方服务器会对referer进行判断，来自其他域名的请求会被屏蔽。而直接通过浏览器打开的请求则不会添加referer，为了用户正常使用，一般不会屏蔽空referer的请求，因此我们只需要在请求中想办法去掉re">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/Screen%20Shot%202018-05-02%20at%208.31.03%20PM.png">
-<meta property="og:updated_time" content="2018-05-02T13:09:36.076Z">
+<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/1094179-20180522102506928-907006799.png">
+<meta property="og:updated_time" content="2018-06-11T16:01:59.504Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="连接远程服务器mysql">
-<meta name="twitter:description" content="mysql允许远程访问mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问1mysql -u name -p 登录数据库 1use mysql; 切换到mysql数据库 1select host,user from user; 可以看到root用户对应的host为localhost 1update user set host=&amp;quot;%&amp;quot; where user=&amp;">
-<meta name="twitter:image" content="http://p5nzydxvw.bkt.clouddn.com/Screen%20Shot%202018-05-02%20at%208.31.03%20PM.png">
+<meta name="twitter:title" content="解决防盗链导致图片无法引用的问题">
+<meta name="twitter:description" content="很多网站都有反盗链机制，当我们直接把对方的图片地址贴到我们的页面上是无法显示的，比如微信公众号的图片：  这是由于浏览器在发起请求的会自动在请求头里添加referer，显示该请求来自哪个页面。对方服务器会对referer进行判断，来自其他域名的请求会被屏蔽。而直接通过浏览器打开的请求则不会添加referer，为了用户正常使用，一般不会屏蔽空referer的请求，因此我们只需要在请求中想办法去掉re">
+<meta name="twitter:image" content="http://p5nzydxvw.bkt.clouddn.com/1094179-20180522102506928-907006799.png">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://www.eros.pub/2018/05/02/连接远程服务器mysql/"/>
+  <link rel="canonical" href="http://www.eros.pub/2018/06/11/解决防盗链导致图片无法引用的问题/"/>
 
 
 
 
 
-  <title>连接远程服务器mysql | ZhangWenL</title>
+  <title>解决防盗链导致图片无法引用的问题 | ZhangWenL</title>
   
 
 
@@ -245,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/05/02/连接远程服务器mysql/">
+    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/06/11/解决防盗链导致图片无法引用的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="卖黄瓜的小花菜">
@@ -262,7 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">连接远程服务器mysql</h1>
+          <h1 class="post-title" itemprop="name headline">解决防盗链导致图片无法引用的问题</h1>
         
 
         <div class="post-meta">
@@ -274,8 +273,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-02T20:20:00+08:00">
-                2018-05-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T22:51:00+08:00">
+                2018-06-11
               </time>
             
 
@@ -297,8 +296,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/其它/" itemprop="url" rel="index">
+                    <span itemprop="name">其它</span>
                   </a>
                 </span>
 
@@ -339,22 +338,15 @@
       
 
       
-        <h1 id="mysql允许远程访问"><a href="#mysql允许远程访问" class="headerlink" title="mysql允许远程访问"></a>mysql允许远程访问</h1><p>mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u name -p</span><br></pre></td></tr></table></figure></p>
-<p>登录数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br></pre></td></tr></table></figure>
-<p>切换到mysql数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select host,user from user;</span><br></pre></td></tr></table></figure>
-<p>可以看到root用户对应的host为localhost<br><img src="http://p5nzydxvw.bkt.clouddn.com/Screen%20Shot%202018-05-02%20at%208.31.03%20PM.png" alt="paste image"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set host=&quot;%&quot; where user=&quot;root&quot;;</span><br></pre></td></tr></table></figure>
-<p>将用户对应的host改为%，表示可以从任何机器进行访问</p>
-<h1 id="修改防火墙"><a href="#修改防火墙" class="headerlink" title="修改防火墙"></a>修改防火墙</h1><p>要远程连接需要确保3306端口没有被防火墙拦截<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet 你的ip 3306</span><br></pre></td></tr></table></figure></p>
-<p>访问3306端口，如果访问失败，通过以下命令配置防火墙<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow 3306</span><br></pre></td></tr></table></figure></p>
-<p>允许访问3306端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw status</span><br></pre></td></tr></table></figure></p>
-<p>命令查看当前防火墙状态。</p>
-<h1 id="检查端口是否绑定在本地"><a href="#检查端口是否绑定在本地" class="headerlink" title="检查端口是否绑定在本地"></a>检查端口是否绑定在本地</h1><p>若修改完防火墙telnet仍然失败，可通过以下命令查看端口状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -apn|grep 3306</span><br></pre></td></tr></table></figure></p>
-<p>显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp6 0 0 127.0.0.1:3306 :::* LISTEN 13524/mysqld</span><br></pre></td></tr></table></figure></p>
-<p>说明3306端口被绑定在本地，修改/etc/mysql目录下的my.cnf文件，删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-address=127.0.0.1</span><br></pre></td></tr></table></figure></p>
-<p>配置项，或将其改为0.0.0.0</p>
+        <p>很多网站都有反盗链机制，当我们直接把对方的图片地址贴到我们的页面上是无法显示的，比如微信公众号的图片：</p>
+<p><img src="http://p5nzydxvw.bkt.clouddn.com/1094179-20180522102506928-907006799.png" alt="image"></p>
+<p>这是由于浏览器在发起请求的会自动在请求头里添加referer，显示该请求来自哪个页面。对方服务器会对referer进行判断，来自其他域名的请求会被屏蔽。而直接通过浏览器打开的请求则不会添加referer，为了用户正常使用，一般不会屏蔽空referer的请求，因此我们只需要在请求中想办法去掉referer即可正常显示图片。以下两个是我亲测可行的方案。</p>
+<h2 id="HTML页面添加meta标签"><a href="#HTML页面添加meta标签" class="headerlink" title="HTML页面添加meta标签"></a>HTML页面添加meta标签</h2><p>在需要去除referer的页面<head>中添加<code>&lt;meta name=&quot;referrer&quot; content=&quot;never&quot;&gt;</code>，注意name为<strong>referrer</strong>不是<strong>referer</strong>，将<strong>content</strong>设为<strong>never</strong>，则浏览器在发起请求前会删除http请求head中的referer。关于referer更多设置的值可以参考该文章：<a href="https://linux.cn/article-5395-1.html" target="_blank" rel="noopener">《使用 Referer Meta 标签控制 referer》</a></head></p>
+<h2 id="服务器转发请求"><a href="#服务器转发请求" class="headerlink" title="服务器转发请求"></a>服务器转发请求</h2><p>上面方法比较简单直接，但并不是所有时候都适用，比如在邮件中则无法显示，因为邮件服务商一般都会删除邮件中的<head>标签。  </head></p>
+<p>该方法是将原图片的url作为参数传到服务器，由服务器设置referer为null，并302重定向到原来的url。  </p>
+<p>服务器端的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;noreferer&quot;)</span><br><span class="line">public void noreferer(HttpServletResponse response, String url)&#123;</span><br><span class="line">    response.addHeader(&quot;location&quot;,url);</span><br><span class="line">    response.addHeader(&quot;referer&quot;,null);</span><br><span class="line">    response.setStatus(302);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改html页面的img标签，如：<code>&lt;img src=&quot;http://原图片url&quot;&gt;</code> 改为：<code>&lt;img src=&quot;http:你服务器地址/noreferer?url=http://原图片url&quot;</code></p>
 
       
     </div>
@@ -370,14 +362,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/服务器/" rel="tag"># 服务器</a>
-          
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
-          
-        </div>
-      
 
       
       
@@ -387,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/10/Java内存模型/" rel="next" title="Java内存模型">
-                <i class="fa fa-chevron-left"></i> Java内存模型
+              <a href="/2018/05/10/创建线程池/" rel="next" title="创建线程池">
+                <i class="fa fa-chevron-left"></i> 创建线程池
               </a>
             
           </div>
@@ -396,10 +380,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/10/创建线程池/" rel="prev" title="创建线程池">
-                创建线程池 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -582,7 +562,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql允许远程访问"><span class="nav-number">1.</span> <span class="nav-text">mysql允许远程访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改防火墙"><span class="nav-number">2.</span> <span class="nav-text">修改防火墙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#检查端口是否绑定在本地"><span class="nav-number">3.</span> <span class="nav-text">检查端口是否绑定在本地</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML页面添加meta标签"><span class="nav-number">1.</span> <span class="nav-text">HTML页面添加meta标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器转发请求"><span class="nav-number">2.</span> <span class="nav-text">服务器转发请求</span></a></li></ol></div>
             
 
           </div>

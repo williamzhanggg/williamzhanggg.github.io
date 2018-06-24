@@ -885,157 +885,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/04/08/当我们听民谣的时候我们都在听什么/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="卖黄瓜的小花菜">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZhangWenL">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/08/当我们听民谣的时候我们都在听什么/" itemprop="url">当我们听民谣的时候我们都在听什么</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T19:59:00+08:00">
-                2018-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/其它/" itemprop="url" rel="index">
-                    <span itemprop="name">其它</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>之前新闻里看到人家六年级的小学生写了《大数据帮你进一步认识苏轼》，虽然分析的过程其实并不复杂，但为了不落后于人家小学生-_-，我也来一个类似的吧。我平时比较喜欢听民谣，那就分析一下民谣歌手都在唱什么。  </p>
-<p>在分析之前首先要有足够多的数据，为此我写了一个爬虫，（代码见<a href="https://github.com/williamzhanggg/Spider/blob/master/Spider/spiders/qqmusic.py" target="_blank" rel="noopener">Github</a>），爬取了qq音乐上共计<strong>31</strong>位歌手<strong>1579</strong>首歌曲的歌词，歌手名单如下。<br><img src="http://p5nzydxvw.bkt.clouddn.com/1523190365955doxh27yk.png?imageslim" alt="paste image"><br>最终爬到的歌词数量在<strong>51万</strong>多。</p>
-<p>首先来看看歌曲中出现最多的词汇是什么，通过对歌词进行分词和统计，我们可以发现排名前三的分别为<strong>“世界”，“生活”，“时间”</strong>。爱情居然排第八，我本以为第一会是爱情-_-||。<br><img src="http://p5nzydxvw.bkt.clouddn.com/1523191148504cto6lrzj.png?imageslim" alt="paste image"><br>将统计结果做成词云：<br><img src="http://p5nzydxvw.bkt.clouddn.com/1523191609421zypae8r0.png?imageslim" alt="paste image"></p>
-<p>再来看一下歌词中那个城市出现的次数最多，在csdn上下载到一份《全国省市区字典》，总共有335座城市。<br><img src="http://p5nzydxvw.bkt.clouddn.com/1523191783800q5fgp5qm.png?imageslim" alt="paste image"></p>
-<p>同样将之前爬取到的所有歌词分词，跟字典比对进行统计。最终结果又一次出乎我的预料，北京以58.6%的比例远远超过其他城市，成都以7.5%位居第二，文艺青年常爱挂嘴边的丽江，大理加起来才占到9.3%。看来歌手中是有不少北漂一族。<br><img src="http://p5nzydxvw.bkt.clouddn.com/1523192126115w8aombiq.png?imageslim" alt="paste image"></p>
-<p>在爬取每首歌的时候我也将每首歌的评论数一并给抓取下来，通过计算每个歌手的平均评论数量，可以从侧面反映一个歌手受欢迎的程度。</p>
-<p>从结果我们可以看到，之前凭借成都这首歌大火的赵雷以平均评论数2600左右位居第一，差不多是第三名齐一的两倍<br><img src="http://p5nzydxvw.bkt.clouddn.com/1523193615771cs263f3r.png?imageslim" alt="paste image">（由于爬虫使用了代理，代理ip都是在网上爬取的免费ip，使用起来不是很稳定，个别请求可能会失败。在分析之前我连续爬取了三次，尽量减少请求失败给统计结果带来的误差。上面的结果仅供参考。） </p>
-<p>最后我们对歌曲下面的评论进行分析，做成词云。可以看到<strong>孤独，感觉，爱情</strong>等词出现的频率都是比较高的，看来听民谣的大多比较多愁善感？</p>
-<p>从词云中我们还可以发现，虽然陈粒和李志两位歌手的评论数量不算多，但在评论里被提到的频率还是很高的。说明两人在民谣圈里还是比较被认可的。<br><img src="http://p5nzydxvw.bkt.clouddn.com/15231962698563gvwlfw5.png?imageslim" alt="paste image"></p>
-<p>本来想对歌词进行情感分析的，看看谁更积极，谁更消极，结果折腾了半天nltk楞是没弄明白，等以后有时间再说吧：）。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/03/29/类加载机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1957,7 +1806,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1979,7 +1828,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

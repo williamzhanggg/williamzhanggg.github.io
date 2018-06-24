@@ -2,7 +2,6 @@ http://www.eros.pub/2018/06/11/解决防盗链导致图片无法引用的问题/
 http://www.eros.pub/2018/05/10/创建线程池/
 http://www.eros.pub/2018/05/02/连接远程服务器mysql/
 http://www.eros.pub/2018/04/10/Java内存模型/
-http://www.eros.pub/2018/04/08/当我们听民谣的时候我们都在听什么/
 http://www.eros.pub/2018/03/29/类加载机制/
 http://www.eros.pub/2018/03/25/虚拟机性能监控与故障处理工具/
 http://www.eros.pub/2018/03/22/垃圾收集器以及内存分配策略/

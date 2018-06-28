@@ -239,6 +239,219 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/06/28/使用scrapyd部署scrapy爬虫/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="卖黄瓜的小花菜">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZhangWenL">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/28/使用scrapyd部署scrapy爬虫/" itemprop="url">连接远程服务器mysql</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-28T20:20:00+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用scrapyd部署scrapy爬虫"><a href="#使用scrapyd部署scrapy爬虫" class="headerlink" title="使用scrapyd部署scrapy爬虫"></a>使用scrapyd部署scrapy爬虫</h1><p>之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装scrapyd：<code>pip install scrapyd</code>  </p>
+<p>安装打包工具scrapyd-client：<code>pip install scrapyd-client</code></p>
+<h2 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h2><h3 id="1-修改scrapy-cfg文件"><a href="#1-修改scrapy-cfg文件" class="headerlink" title="1.修改scrapy.cfg文件"></a>1.修改scrapy.cfg文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[deploy]</span><br><span class="line"><span class="comment">#url = http://localhost:6800/</span></span><br><span class="line">project = Spider</span><br></pre></td></tr></table></figure>
+<ul>
+<li>url：去除<code>url</code>前面的#注释，<code>url</code>为scrapyd服务器的地址</li>
+<li>project：<code>project</code>为项目名称，可随便定义</li>
+<li>version：默认会根据当前时间戳生成项目的版本信息，如需自定义则在最后加上<code>version</code>参数</li>
+<li>target：deploy后面可加上target名称，指定不同的scrapyd服务器</li>
+</ul>
+<p>修改后的scrapy.cfg如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[deploy:demo]</span><br><span class="line">url = http://localhost:<span class="number">6800</span>/</span><br><span class="line">project = Spider</span><br><span class="line">version = <span class="number">1.1</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-查看所有配置"><a href="#2-查看所有配置" class="headerlink" title="2.查看所有配置"></a>2.查看所有配置</h3><p>使用<code>scrapyd-deploy -l</code>查看所有配置项  </p>
+<blockquote>
+<p>windows下可能会提示 ‘scrapyd-deploy’ 不是内部或外部命令。</p>
+<p>打开python安装目录下的Scripts文件夹，新建scrapyd-deploy.bat文件，将如下内容填入该bat文件（注意替换成自己的目录）</p>
+<p>@echo off</p>
+<p>“D:\Developer Tools\python\python.exe” “D:\Developer Tools\python\Scripts\scrapyd-deploy” %1 %2 %3 %4 %5 %6 %7 %8 %9</p>
+</blockquote>
+<h3 id="3-部署"><a href="#3-部署" class="headerlink" title="3.部署"></a>3.部署</h3><p>使用<code>scrapyd</code>命令启动scrapyd服务器，<code>cd</code>到scrapy项目根目录，使用如下命令部署指定项目到指定的scrapyd服务器中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapyd-deploy &lt;target&gt; -p &lt;project&gt;</span><br></pre></td></tr></table></figure>
+<p>如果一个项目需要部署到多个target，可使用如下命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapyd-deploy -a -p &lt;project&gt;</span><br></pre></td></tr></table></figure>
+<p>返回如下信息表示部署成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Deploying to project &quot;Spider&quot; in http://localhost:6800/addversion.json</span><br><span class="line">Server response (200):</span><br><span class="line">&#123;&quot;node_name&quot;: &quot;USER-U2VF9HUJ65&quot;, &quot;status&quot;: &quot;ok&quot;, &quot;project&quot;: &quot;Spider&quot;, &quot;version&quot;: &quot;1.0&quot;, &quot;spiders&quot;: 4&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><ul>
+<li>查看服务器状态（get）<ul>
+<li><a href="http://localhost:6800/daemonstatus.json" target="_blank" rel="noopener">http://localhost:6800/daemonstatus.json</a></li>
+</ul>
+</li>
+<li>上传的项目列表（get）<ul>
+<li><a href="http://localhost:6800/listprojects.json" target="_blank" rel="noopener">http://localhost:6800/listprojects.json</a></li>
+</ul>
+</li>
+<li>获取某一项目所有版本列表（get）<ul>
+<li><a href="http://localhost:6800/listversions.json?project=Spider" target="_blank" rel="noopener">http://localhost:6800/listversions.json?project=Spider</a></li>
+</ul>
+</li>
+<li>获取项目某一版本下所有的爬虫（get）<ul>
+<li><a href="http://localhost:6800/listspiders.json?project=Spider&amp;version=1530149345" target="_blank" rel="noopener">http://localhost:6800/listspiders.json?project=Spider&amp;version=1530149345</a></li>
+</ul>
+</li>
+<li>获取所有的jobs（get）<ul>
+<li><a href="http://localhost:6800/listjobs.json?project=Spider" target="_blank" rel="noopener">http://localhost:6800/listjobs.json?project=Spider</a></li>
+</ul>
+</li>
+<li>删除某一版本（post）<ul>
+<li><a href="http://localhost:6800/delversion.json" target="_blank" rel="noopener">http://localhost:6800/delversion.json</a></li>
+<li>参数：project 项目名称，version 项目版本</li>
+</ul>
+</li>
+<li>删除项目（post）<ul>
+<li><a href="http://localhost:6800/delproject.json" target="_blank" rel="noopener">http://localhost:6800/delproject.json</a></li>
+<li>参数：project 项目名称</li>
+</ul>
+</li>
+<li>开启爬虫（post）<ul>
+<li><a href="http://localhost:6800/schedule.json" target="_blank" rel="noopener">http://localhost:6800/schedule.json</a></li>
+<li>参数：project 项目名称，spider 爬虫名称</li>
+<li>返回job id，停止爬虫时需要该参数</li>
+</ul>
+</li>
+<li>取消爬虫（post）<ul>
+<li><a href="http://localhost:6800/cancel.json" target="_blank" rel="noopener">http://localhost:6800/cancel.json</a></li>
+<li>参数：project 项目名称，job 启动时返回的id</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://github.com/scrapy/scrapyd-client" target="_blank" rel="noopener">https://github.com/scrapy/scrapyd-client</a></li>
+<li><a href="http://scrapyd.readthedocs.io/en/stable/index.html" target="_blank" rel="noopener">http://scrapyd.readthedocs.io/en/stable/index.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/06/11/解决防盗链导致图片无法引用的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1806,7 +2019,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1817,7 +2030,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1828,7 +2041,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

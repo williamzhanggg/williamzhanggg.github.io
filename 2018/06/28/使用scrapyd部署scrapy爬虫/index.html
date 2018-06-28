@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="scrapy,python," />
 
 
 
@@ -79,19 +79,18 @@
 
 
 
-<meta name="description" content="很多网站都有反盗链机制，当我们直接把对方的图片地址贴到我们的页面上是无法显示的，比如微信公众号的图片：  这是由于浏览器在发起请求的会自动在请求头里添加referer，显示该请求来自哪个页面。对方服务器会对referer进行判断，来自其他域名的请求会被屏蔽。而直接通过浏览器打开的请求则不会添加referer，为了用户正常使用，一般不会屏蔽空referer的请求，因此我们只需要在请求中想办法去掉re">
+<meta name="description" content="使用scrapyd部署scrapy爬虫之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。 安装安装scrapyd：pip install scrapyd   安装打包工具scrapyd-c">
+<meta name="keywords" content="scrapy,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决防盗链导致图片无法引用的问题">
-<meta property="og:url" content="http://www.eros.pub/2018/06/11/解决防盗链导致图片无法引用的问题/index.html">
+<meta property="og:title" content="连接远程服务器mysql">
+<meta property="og:url" content="http://www.eros.pub/2018/06/28/使用scrapyd部署scrapy爬虫/index.html">
 <meta property="og:site_name" content="ZhangWenL">
-<meta property="og:description" content="很多网站都有反盗链机制，当我们直接把对方的图片地址贴到我们的页面上是无法显示的，比如微信公众号的图片：  这是由于浏览器在发起请求的会自动在请求头里添加referer，显示该请求来自哪个页面。对方服务器会对referer进行判断，来自其他域名的请求会被屏蔽。而直接通过浏览器打开的请求则不会添加referer，为了用户正常使用，一般不会屏蔽空referer的请求，因此我们只需要在请求中想办法去掉re">
+<meta property="og:description" content="使用scrapyd部署scrapy爬虫之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。 安装安装scrapyd：pip install scrapyd   安装打包工具scrapyd-c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/1094179-20180522102506928-907006799.png">
-<meta property="og:updated_time" content="2018-06-11T16:01:59.504Z">
+<meta property="og:updated_time" content="2018-06-28T12:36:08.310Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决防盗链导致图片无法引用的问题">
-<meta name="twitter:description" content="很多网站都有反盗链机制，当我们直接把对方的图片地址贴到我们的页面上是无法显示的，比如微信公众号的图片：  这是由于浏览器在发起请求的会自动在请求头里添加referer，显示该请求来自哪个页面。对方服务器会对referer进行判断，来自其他域名的请求会被屏蔽。而直接通过浏览器打开的请求则不会添加referer，为了用户正常使用，一般不会屏蔽空referer的请求，因此我们只需要在请求中想办法去掉re">
-<meta name="twitter:image" content="http://p5nzydxvw.bkt.clouddn.com/1094179-20180522102506928-907006799.png">
+<meta name="twitter:title" content="连接远程服务器mysql">
+<meta name="twitter:description" content="使用scrapyd部署scrapy爬虫之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。 安装安装scrapyd：pip install scrapyd   安装打包工具scrapyd-c">
 
 
 
@@ -121,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://www.eros.pub/2018/06/11/解决防盗链导致图片无法引用的问题/"/>
+  <link rel="canonical" href="http://www.eros.pub/2018/06/28/使用scrapyd部署scrapy爬虫/"/>
 
 
 
 
 
-  <title>解决防盗链导致图片无法引用的问题 | ZhangWenL</title>
+  <title>连接远程服务器mysql | ZhangWenL</title>
   
 
 
@@ -244,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/06/11/解决防盗链导致图片无法引用的问题/">
+    <link itemprop="mainEntityOfPage" href="http://www.eros.pub/2018/06/28/使用scrapyd部署scrapy爬虫/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="卖黄瓜的小花菜">
@@ -261,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">解决防盗链导致图片无法引用的问题</h1>
+          <h1 class="post-title" itemprop="name headline">连接远程服务器mysql</h1>
         
 
         <div class="post-meta">
@@ -273,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T22:51:00+08:00">
-                2018-06-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-28T20:20:00+08:00">
+                2018-06-28
               </time>
             
 
@@ -296,8 +295,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/其它/" itemprop="url" rel="index">
-                    <span itemprop="name">其它</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -338,15 +337,78 @@
       
 
       
-        <p>很多网站都有反盗链机制，当我们直接把对方的图片地址贴到我们的页面上是无法显示的，比如微信公众号的图片：</p>
-<p><img src="http://p5nzydxvw.bkt.clouddn.com/1094179-20180522102506928-907006799.png" alt="image"></p>
-<p>这是由于浏览器在发起请求的会自动在请求头里添加referer，显示该请求来自哪个页面。对方服务器会对referer进行判断，来自其他域名的请求会被屏蔽。而直接通过浏览器打开的请求则不会添加referer，为了用户正常使用，一般不会屏蔽空referer的请求，因此我们只需要在请求中想办法去掉referer即可正常显示图片。以下两个是我亲测可行的方案。</p>
-<h2 id="HTML页面添加meta标签"><a href="#HTML页面添加meta标签" class="headerlink" title="HTML页面添加meta标签"></a>HTML页面添加meta标签</h2><p>在需要去除referer的页面<head>中添加<code>&lt;meta name=&quot;referrer&quot; content=&quot;never&quot;&gt;</code>，注意name为<strong>referrer</strong>不是<strong>referer</strong>，将<strong>content</strong>设为<strong>never</strong>，则浏览器在发起请求前会删除http请求head中的referer。关于referer更多设置的值可以参考该文章：<a href="https://linux.cn/article-5395-1.html" target="_blank" rel="noopener">《使用 Referer Meta 标签控制 referer》</a></head></p>
-<h2 id="服务器转发请求"><a href="#服务器转发请求" class="headerlink" title="服务器转发请求"></a>服务器转发请求</h2><p>上面方法比较简单直接，但并不是所有时候都适用，比如在邮件中则无法显示，因为邮件服务商一般都会删除邮件中的<head>标签。  </head></p>
-<p>该方法是将原图片的url作为参数传到服务器，由服务器设置referer为null，并302重定向到原来的url。  </p>
-<p>服务器端的代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;noreferer&quot;)</span><br><span class="line">public void noreferer(HttpServletResponse response, String url)&#123;</span><br><span class="line">    response.addHeader(&quot;location&quot;,url);</span><br><span class="line">    response.addHeader(&quot;referer&quot;,null);</span><br><span class="line">    response.setStatus(302);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>修改html页面的img标签，如：<code>&lt;img src=&quot;http://原图片url&quot;&gt;</code> 改为：<code>&lt;img src=&quot;http:你服务器地址/noreferer?url=http://原图片url&quot;</code></p>
+        <h1 id="使用scrapyd部署scrapy爬虫"><a href="#使用scrapyd部署scrapy爬虫" class="headerlink" title="使用scrapyd部署scrapy爬虫"></a>使用scrapyd部署scrapy爬虫</h1><p>之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装scrapyd：<code>pip install scrapyd</code>  </p>
+<p>安装打包工具scrapyd-client：<code>pip install scrapyd-client</code></p>
+<h2 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h2><h3 id="1-修改scrapy-cfg文件"><a href="#1-修改scrapy-cfg文件" class="headerlink" title="1.修改scrapy.cfg文件"></a>1.修改scrapy.cfg文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[deploy]</span><br><span class="line"><span class="comment">#url = http://localhost:6800/</span></span><br><span class="line">project = Spider</span><br></pre></td></tr></table></figure>
+<ul>
+<li>url：去除<code>url</code>前面的#注释，<code>url</code>为scrapyd服务器的地址</li>
+<li>project：<code>project</code>为项目名称，可随便定义</li>
+<li>version：默认会根据当前时间戳生成项目的版本信息，如需自定义则在最后加上<code>version</code>参数</li>
+<li>target：deploy后面可加上target名称，指定不同的scrapyd服务器</li>
+</ul>
+<p>修改后的scrapy.cfg如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[deploy:demo]</span><br><span class="line">url = http://localhost:<span class="number">6800</span>/</span><br><span class="line">project = Spider</span><br><span class="line">version = <span class="number">1.1</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-查看所有配置"><a href="#2-查看所有配置" class="headerlink" title="2.查看所有配置"></a>2.查看所有配置</h3><p>使用<code>scrapyd-deploy -l</code>查看所有配置项  </p>
+<blockquote>
+<p>windows下可能会提示 ‘scrapyd-deploy’ 不是内部或外部命令。</p>
+<p>打开python安装目录下的Scripts文件夹，新建scrapyd-deploy.bat文件，将如下内容填入该bat文件（注意替换成自己的目录）</p>
+<p>@echo off</p>
+<p>“D:\Developer Tools\python\python.exe” “D:\Developer Tools\python\Scripts\scrapyd-deploy” %1 %2 %3 %4 %5 %6 %7 %8 %9</p>
+</blockquote>
+<h3 id="3-部署"><a href="#3-部署" class="headerlink" title="3.部署"></a>3.部署</h3><p>使用<code>scrapyd</code>命令启动scrapyd服务器，<code>cd</code>到scrapy项目根目录，使用如下命令部署指定项目到指定的scrapyd服务器中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapyd-deploy &lt;target&gt; -p &lt;project&gt;</span><br></pre></td></tr></table></figure>
+<p>如果一个项目需要部署到多个target，可使用如下命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapyd-deploy -a -p &lt;project&gt;</span><br></pre></td></tr></table></figure>
+<p>返回如下信息表示部署成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Deploying to project &quot;Spider&quot; in http://localhost:6800/addversion.json</span><br><span class="line">Server response (200):</span><br><span class="line">&#123;&quot;node_name&quot;: &quot;USER-U2VF9HUJ65&quot;, &quot;status&quot;: &quot;ok&quot;, &quot;project&quot;: &quot;Spider&quot;, &quot;version&quot;: &quot;1.0&quot;, &quot;spiders&quot;: 4&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><ul>
+<li>查看服务器状态（get）<ul>
+<li><a href="http://localhost:6800/daemonstatus.json" target="_blank" rel="noopener">http://localhost:6800/daemonstatus.json</a></li>
+</ul>
+</li>
+<li>上传的项目列表（get）<ul>
+<li><a href="http://localhost:6800/listprojects.json" target="_blank" rel="noopener">http://localhost:6800/listprojects.json</a></li>
+</ul>
+</li>
+<li>获取某一项目所有版本列表（get）<ul>
+<li><a href="http://localhost:6800/listversions.json?project=Spider" target="_blank" rel="noopener">http://localhost:6800/listversions.json?project=Spider</a></li>
+</ul>
+</li>
+<li>获取项目某一版本下所有的爬虫（get）<ul>
+<li><a href="http://localhost:6800/listspiders.json?project=Spider&amp;version=1530149345" target="_blank" rel="noopener">http://localhost:6800/listspiders.json?project=Spider&amp;version=1530149345</a></li>
+</ul>
+</li>
+<li>获取所有的jobs（get）<ul>
+<li><a href="http://localhost:6800/listjobs.json?project=Spider" target="_blank" rel="noopener">http://localhost:6800/listjobs.json?project=Spider</a></li>
+</ul>
+</li>
+<li>删除某一版本（post）<ul>
+<li><a href="http://localhost:6800/delversion.json" target="_blank" rel="noopener">http://localhost:6800/delversion.json</a></li>
+<li>参数：project 项目名称，version 项目版本</li>
+</ul>
+</li>
+<li>删除项目（post）<ul>
+<li><a href="http://localhost:6800/delproject.json" target="_blank" rel="noopener">http://localhost:6800/delproject.json</a></li>
+<li>参数：project 项目名称</li>
+</ul>
+</li>
+<li>开启爬虫（post）<ul>
+<li><a href="http://localhost:6800/schedule.json" target="_blank" rel="noopener">http://localhost:6800/schedule.json</a></li>
+<li>参数：project 项目名称，spider 爬虫名称</li>
+<li>返回job id，停止爬虫时需要该参数</li>
+</ul>
+</li>
+<li>取消爬虫（post）<ul>
+<li><a href="http://localhost:6800/cancel.json" target="_blank" rel="noopener">http://localhost:6800/cancel.json</a></li>
+<li>参数：project 项目名称，job 启动时返回的id</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://github.com/scrapy/scrapyd-client" target="_blank" rel="noopener">https://github.com/scrapy/scrapyd-client</a></li>
+<li><a href="http://scrapyd.readthedocs.io/en/stable/index.html" target="_blank" rel="noopener">http://scrapyd.readthedocs.io/en/stable/index.html</a></li>
+</ul>
 
       
     </div>
@@ -362,6 +424,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/scrapy/" rel="tag"># scrapy</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
 
       
       
@@ -371,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/10/创建线程池/" rel="next" title="创建线程池">
-                <i class="fa fa-chevron-left"></i> 创建线程池
+              <a href="/2018/06/11/解决防盗链导致图片无法引用的问题/" rel="next" title="解决防盗链导致图片无法引用的问题">
+                <i class="fa fa-chevron-left"></i> 解决防盗链导致图片无法引用的问题
               </a>
             
           </div>
@@ -380,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/28/使用scrapyd部署scrapy爬虫/" rel="prev" title="连接远程服务器mysql">
-                连接远程服务器mysql <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -566,7 +632,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML页面添加meta标签"><span class="nav-number">1.</span> <span class="nav-text">HTML页面添加meta标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器转发请求"><span class="nav-number">2.</span> <span class="nav-text">服务器转发请求</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用scrapyd部署scrapy爬虫"><span class="nav-number">1.</span> <span class="nav-text">使用scrapyd部署scrapy爬虫</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署项目"><span class="nav-number">1.2.</span> <span class="nav-text">部署项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-修改scrapy-cfg文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.修改scrapy.cfg文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-查看所有配置"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.查看所有配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-部署"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">1.3.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.4.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/28/使用scrapyd部署scrapy爬虫/" itemprop="url">连接远程服务器mysql</a></h1>
+                <a class="post-title-link" href="/2018/06/28/使用scrapyd部署scrapy爬虫/" itemprop="url">使用scrapyd部署scrapy爬虫</a></h1>
         
 
         <div class="post-meta">
@@ -332,7 +332,7 @@
       
         
           
-            <h1 id="使用scrapyd部署scrapy爬虫"><a href="#使用scrapyd部署scrapy爬虫" class="headerlink" title="使用scrapyd部署scrapy爬虫"></a>使用scrapyd部署scrapy爬虫</h1><p>之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。</p>
+            <p>之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装scrapyd：<code>pip install scrapyd</code>  </p>
 <p>安装打包工具scrapyd-client：<code>pip install scrapyd-client</code></p>
 <h2 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h2><h3 id="1-修改scrapy-cfg文件"><a href="#1-修改scrapy-cfg文件" class="headerlink" title="1.修改scrapy.cfg文件"></a>1.修改scrapy.cfg文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[deploy]</span><br><span class="line"><span class="comment">#url = http://localhost:6800/</span></span><br><span class="line">project = Spider</span><br></pre></td></tr></table></figure>
@@ -869,7 +869,7 @@
       
         
           
-            <h1 id="mysql允许远程访问"><a href="#mysql允许远程访问" class="headerlink" title="mysql允许远程访问"></a>mysql允许远程访问</h1><p>mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u name -p</span><br></pre></td></tr></table></figure></p>
+            <p>mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u name -p</span><br></pre></td></tr></table></figure></p>
 <p>登录数据库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br></pre></td></tr></table></figure>
 <p>切换到mysql数据库</p>

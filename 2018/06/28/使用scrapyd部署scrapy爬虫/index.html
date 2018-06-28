@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="使用scrapyd部署scrapy爬虫之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。 安装安装scrapyd：pip install scrapyd   安装打包工具scrapyd-c">
+<meta name="description" content="之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。 安装安装scrapyd：pip install scrapyd   安装打包工具scrapyd-client：pip install s">
 <meta name="keywords" content="scrapy,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="连接远程服务器mysql">
+<meta property="og:title" content="使用scrapyd部署scrapy爬虫">
 <meta property="og:url" content="http://www.eros.pub/2018/06/28/使用scrapyd部署scrapy爬虫/index.html">
 <meta property="og:site_name" content="ZhangWenL">
-<meta property="og:description" content="使用scrapyd部署scrapy爬虫之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。 安装安装scrapyd：pip install scrapyd   安装打包工具scrapyd-c">
+<meta property="og:description" content="之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。 安装安装scrapyd：pip install scrapyd   安装打包工具scrapyd-client：pip install s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-28T12:36:08.310Z">
+<meta property="og:updated_time" content="2018-06-28T12:39:36.586Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="连接远程服务器mysql">
-<meta name="twitter:description" content="使用scrapyd部署scrapy爬虫之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。 安装安装scrapyd：pip install scrapyd   安装打包工具scrapyd-c">
+<meta name="twitter:title" content="使用scrapyd部署scrapy爬虫">
+<meta name="twitter:description" content="之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。 安装安装scrapyd：pip install scrapyd   安装打包工具scrapyd-client：pip install s">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>连接远程服务器mysql | ZhangWenL</title>
+  <title>使用scrapyd部署scrapy爬虫 | ZhangWenL</title>
   
 
 
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">连接远程服务器mysql</h1>
+          <h1 class="post-title" itemprop="name headline">使用scrapyd部署scrapy爬虫</h1>
         
 
         <div class="post-meta">
@@ -337,7 +337,7 @@
       
 
       
-        <h1 id="使用scrapyd部署scrapy爬虫"><a href="#使用scrapyd部署scrapy爬虫" class="headerlink" title="使用scrapyd部署scrapy爬虫"></a>使用scrapyd部署scrapy爬虫</h1><p>之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。</p>
+        <p>之前运行爬虫都是直接通过命令行启动，但当爬虫部署到服务器上再通过命令行启动会十分不方便。最好能够直接在网页上进行操作，scrapyd库正好可以满足该需求，使用scrapyd可以接通过http控制爬虫的启动和停止，且可以同时管理多个爬虫，每个爬虫可以拥有多个版本。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装scrapyd：<code>pip install scrapyd</code>  </p>
 <p>安装打包工具scrapyd-client：<code>pip install scrapyd-client</code></p>
 <h2 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h2><h3 id="1-修改scrapy-cfg文件"><a href="#1-修改scrapy-cfg文件" class="headerlink" title="1.修改scrapy.cfg文件"></a>1.修改scrapy.cfg文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[deploy]</span><br><span class="line"><span class="comment">#url = http://localhost:6800/</span></span><br><span class="line">project = Spider</span><br></pre></td></tr></table></figure>
@@ -632,7 +632,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用scrapyd部署scrapy爬虫"><span class="nav-number">1.</span> <span class="nav-text">使用scrapyd部署scrapy爬虫</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署项目"><span class="nav-number">1.2.</span> <span class="nav-text">部署项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-修改scrapy-cfg文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.修改scrapy.cfg文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-查看所有配置"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.查看所有配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-部署"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">1.3.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.4.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署项目"><span class="nav-number">2.</span> <span class="nav-text">部署项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-修改scrapy-cfg文件"><span class="nav-number">2.1.</span> <span class="nav-text">1.修改scrapy.cfg文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-查看所有配置"><span class="nav-number">2.2.</span> <span class="nav-text">2.查看所有配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-部署"><span class="nav-number">2.3.</span> <span class="nav-text">3.部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">3.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

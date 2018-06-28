@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="mysql允许远程访问mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问1mysql -u name -p 登录数据库 1use mysql; 切换到mysql数据库 1select host,user from user; 可以看到root用户对应的host为localhost 1update user set host=&amp;quot;%&amp;quot; where user=&amp;">
+<meta name="description" content="mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问1mysql -u name -p 登录数据库 1use mysql; 切换到mysql数据库 1select host,user from user; 可以看到root用户对应的host为localhost 1update user set host=&amp;quot;%&amp;quot; where user=&amp;quot;root&amp;q">
 <meta name="keywords" content="服务器,mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="连接远程服务器mysql">
 <meta property="og:url" content="http://www.eros.pub/2018/05/02/连接远程服务器mysql/index.html">
 <meta property="og:site_name" content="ZhangWenL">
-<meta property="og:description" content="mysql允许远程访问mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问1mysql -u name -p 登录数据库 1use mysql; 切换到mysql数据库 1select host,user from user; 可以看到root用户对应的host为localhost 1update user set host=&amp;quot;%&amp;quot; where user=&amp;">
+<meta property="og:description" content="mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问1mysql -u name -p 登录数据库 1use mysql; 切换到mysql数据库 1select host,user from user; 可以看到root用户对应的host为localhost 1update user set host=&amp;quot;%&amp;quot; where user=&amp;quot;root&amp;q">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p5nzydxvw.bkt.clouddn.com/Screen%20Shot%202018-05-02%20at%208.31.03%20PM.png">
-<meta property="og:updated_time" content="2018-05-02T13:09:36.076Z">
+<meta property="og:updated_time" content="2018-06-28T12:39:33.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="连接远程服务器mysql">
-<meta name="twitter:description" content="mysql允许远程访问mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问1mysql -u name -p 登录数据库 1use mysql; 切换到mysql数据库 1select host,user from user; 可以看到root用户对应的host为localhost 1update user set host=&amp;quot;%&amp;quot; where user=&amp;">
+<meta name="twitter:description" content="mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问1mysql -u name -p 登录数据库 1use mysql; 切换到mysql数据库 1select host,user from user; 可以看到root用户对应的host为localhost 1update user set host=&amp;quot;%&amp;quot; where user=&amp;quot;root&amp;q">
 <meta name="twitter:image" content="http://p5nzydxvw.bkt.clouddn.com/Screen%20Shot%202018-05-02%20at%208.31.03%20PM.png">
 
 
@@ -339,7 +339,7 @@
       
 
       
-        <h1 id="mysql允许远程访问"><a href="#mysql允许远程访问" class="headerlink" title="mysql允许远程访问"></a>mysql允许远程访问</h1><p>mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u name -p</span><br></pre></td></tr></table></figure></p>
+        <p>mysql默认只可以本地访问，需要修改user表使其允许所有ip进行访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u name -p</span><br></pre></td></tr></table></figure></p>
 <p>登录数据库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br></pre></td></tr></table></figure>
 <p>切换到mysql数据库</p>
@@ -582,7 +582,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql允许远程访问"><span class="nav-number">1.</span> <span class="nav-text">mysql允许远程访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改防火墙"><span class="nav-number">2.</span> <span class="nav-text">修改防火墙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#检查端口是否绑定在本地"><span class="nav-number">3.</span> <span class="nav-text">检查端口是否绑定在本地</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#修改防火墙"><span class="nav-number">1.</span> <span class="nav-text">修改防火墙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#检查端口是否绑定在本地"><span class="nav-number">2.</span> <span class="nav-text">检查端口是否绑定在本地</span></a></li></ol></div>
             
 
           </div>

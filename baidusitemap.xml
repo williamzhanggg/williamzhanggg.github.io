@@ -5,10 +5,10 @@
     
   <url>
     <loc>http://www.eros.pub/2018/06/28/%E4%BD%BF%E7%94%A8scrapyd%E9%83%A8%E7%BD%B2scrapy%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2018-06-28T12:36:08.310Z</lastmod>
+    <lastmod>2018-06-28T12:39:36.586Z</lastmod>
     <data>
         <display>
-        <title>连接远程服务器mysql</title>
+        <title>使用scrapyd部署scrapy爬虫</title>
         <pubTime>2018-06-28T12:20:00.000Z</pubTime>
         
         <tag>scrapy</tag>
@@ -19,6 +19,28 @@
            
              
               <breadCrumb title="python" url="http://www.eros.pub/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.eros.pub/2018/05/02/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8mysql/</loc>
+    <lastmod>2018-06-28T12:39:33.062Z</lastmod>
+    <data>
+        <display>
+        <title>连接远程服务器mysql</title>
+        <pubTime>2018-05-02T12:20:00.000Z</pubTime>
+        
+        <tag>服务器</tag>
+         
+        <tag>mysql</tag>
+         
+         
+           
+             
+              <breadCrumb title="mysql" url="http://www.eros.pub/categories/mysql/"/>
           
         </display>
     </data>
@@ -61,28 +83,6 @@
            
              
               <breadCrumb title="Java" url="http://www.eros.pub/categories/Java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.eros.pub/2018/05/02/%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8mysql/</loc>
-    <lastmod>2018-05-02T13:09:36.076Z</lastmod>
-    <data>
-        <display>
-        <title>连接远程服务器mysql</title>
-        <pubTime>2018-05-02T12:20:00.000Z</pubTime>
-        
-        <tag>服务器</tag>
-         
-        <tag>mysql</tag>
-         
-         
-           
-             
-              <breadCrumb title="mysql" url="http://www.eros.pub/categories/mysql/"/>
           
         </display>
     </data>
